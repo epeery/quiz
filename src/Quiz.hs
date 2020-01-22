@@ -1,5 +1,6 @@
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TypeApplications #-}
 
 module Quiz
   ( Question,
@@ -22,7 +23,13 @@ import Polysemy.Error
 import Quiz.Candidates
 import Quiz.Topics
 
-data Question = Question {question :: Text, topic :: Text, id :: Topics}
+data Question
+  = Question
+      { question :: Text,
+        questionInfo :: Text,
+        topic :: Text,
+        id :: Topics
+      }
   deriving (Generic)
 
 instance FromJSON Question
@@ -32,7 +39,19 @@ instance ToJSON Question
 data QuizError = ResponsesNotValid
 
 getQuestions :: Sem r [Question]
-getQuestions = return $ (\(q, n) -> Question q (getTopic n) n) <$> questions
+getQuestions =
+  return $
+    ( \t ->
+        Question
+          { question = (getQuestion t),
+            questionInfo = (getQuestionInfo t),
+            Quiz.topic = (getTopic t),
+            Quiz.id = t
+          }
+    )
+      <$> topics
+  where
+    topics = getTopics @'[Education, Enviroment, Guns, Healthcare, Immigration]
 
 matchUser :: (Member (Error QuizError) r) => Text -> Sem r Results
 matchUser o = case decode (BSL.fromStrict . BS.pack $ T.unpack o) of
