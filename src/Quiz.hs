@@ -16,7 +16,6 @@ import qualified Data.ByteString.Lazy as BSL
 import qualified Data.Map.Strict as M
 import Data.Text (Text)
 import qualified Data.Text as T
-import Debug.Trace
 import GHC.Generics
 import Polysemy
 import Polysemy.Error
@@ -26,7 +25,7 @@ import Quiz.Topics
 data Question
   = Question
       { question :: Text,
-        questionInfo :: Text,
+        questionInfo :: Info,
         topic :: Text,
         id :: Topics
       }
@@ -55,7 +54,7 @@ getQuestions =
 
 matchUser :: (Member (Error QuizError) r) => Text -> Sem r Results
 matchUser o = case decode (BSL.fromStrict . BS.pack $ T.unpack o) of
-  Just a -> return $ (trace (show a) (matchUser' a))
+  Just a -> return $ matchUser' a
   Nothing -> throw ResponsesNotValid
 
 matchUser' :: M.Map Topics Double -> Results
