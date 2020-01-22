@@ -70,7 +70,7 @@ function Questions({data, onBack, onResults}) {
     return (
       <>
         <h3>Question {number} - {topic}</h3>
-        <h2 className='question' onClick={() => send('INFO')}><span>{children}</span></h2>
+        <h2 className='question'><span onClick={() => send('INFO')}>{children}</span></h2>
         <div className='opinion-container'>
           <button onClick={() => send({type: 'SUBMIT', value: 1})} className={buttonClass(1)} data-color='1'>
             <p>Strongly Agree</p>
