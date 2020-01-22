@@ -14,6 +14,7 @@ module Quiz.Topics
     Guns (..),
     Healthcare (..),
     Immigration (..),
+    Info,
     Positions,
     Topics,
     comparePositions,
@@ -21,8 +22,8 @@ module Quiz.Topics
     getQuestionInfo,
     getTopic,
     getTopics,
-    percentageMatch,
     inject,
+    percentageMatch,
     topic,
   )
 where
@@ -75,7 +76,7 @@ class IsTopic a where
 
   getQuestion :: a -> Text
 
-  getQuestionInfo :: a -> Text
+  getQuestionInfo :: a -> Info
 
   getTopic :: a -> Text
 
@@ -96,6 +97,13 @@ instance (IsTopic a, IsTopic b) => IsTopic (a + b) where
 topic :: (a :<: b) => a -> b
 topic = inj
 
+data Info = Info {header :: Text, info :: Text, source :: Text}
+  deriving (Generic)
+
+instance FromJSON Info
+
+instance ToJSON Info
+
 data Education
   = TuitionFreePublicCollege
   | DebtReliefForStudentLoans
@@ -114,12 +122,42 @@ instance IsTopic Education where
   getQuestion UniversalPreKindergarten = "I am in favor of universal pre-kindergarten"
   getQuestion IncreaseFundingForPublicEducation = "The government should increase funding for primary and secondary public education"
 
-  getQuestionInfo TuitionFreePublicCollege = "TODO: add information about questions"
-  getQuestionInfo DebtReliefForStudentLoans = "TODO: add information about questions"
-  getQuestionInfo AffirmativeAction = "TODO: add information about questions"
-  getQuestionInfo UniversalChildCare = "TODO: add information about questions"
-  getQuestionInfo UniversalPreKindergarten = "TODO: add information about questions"
-  getQuestionInfo IncreaseFundingForPublicEducation = "TODO: add information about questions"
+  getQuestionInfo TuitionFreePublicCollege =
+    Info
+      { header = "Tuition Free Public College",
+        info = "Most Democrats have gotten behind the idea of some form of tuition-free or debt-free college, but they disagree about how much of the tab should be covered. Several candidates have called for making four years of public college free for students under a certain income threshold while others would cover only community college or technical school.",
+        source = "https://www.politico.com/2020-election/candidates-views-on-the-issues/education-reform/free-college/"
+      }
+  getQuestionInfo DebtReliefForStudentLoans =
+    Info
+      { header = "Debt Relief For Student Loans",
+        info = "",
+        source = ""
+      }
+  getQuestionInfo AffirmativeAction =
+    Info
+      { header = "Affirmative Action",
+        info = "",
+        source = ""
+      }
+  getQuestionInfo UniversalChildCare =
+    Info
+      { header = "Universal Child Care",
+        info = "",
+        source = ""
+      }
+  getQuestionInfo UniversalPreKindergarten =
+    Info
+      { header = "Universal Pre-Kindergarten",
+        info = "",
+        source = ""
+      }
+  getQuestionInfo IncreaseFundingForPublicEducation =
+    Info
+      { header = "Increasing Funding For Public Education",
+        info = "",
+        source = ""
+      }
 
   getTopic = const "Education"
 
@@ -152,14 +190,54 @@ instance IsTopic Enviroment where
   getQuestion BanOffshoreDrilling = "Offshore drilling should be banned"
   getQuestion DeclareClimateChangeANationalEmergency = "Climate change should be declared a national emergency"
 
-  getQuestionInfo GreenNewDeal = "TODO: add information about questions"
-  getQuestionInfo NoFossilFuelMoneyPledge = "TODO: add information about questions"
-  getQuestionInfo NuclearPowerToReduceEmissions = "TODO: add information about questions"
-  getQuestionInfo CarbonTax = "TODO: add information about questions"
-  getQuestionInfo ParisAgreement = "TODO: add information about questions"
-  getQuestionInfo BanFracking = "TODO: add information about questions"
-  getQuestionInfo BanOffshoreDrilling = "TODO: add information about questions"
-  getQuestionInfo DeclareClimateChangeANationalEmergency = "TODO: add information about questions"
+  getQuestionInfo GreenNewDeal =
+    Info
+      { header = "The Green New Deal",
+        info = "",
+        source = ""
+      }
+  getQuestionInfo NoFossilFuelMoneyPledge =
+    Info
+      { header = "The No Fossil Fuel Money Pledge",
+        info = "I pledge not to take contributions over $200 from oil, gas, and coal industry executives, lobbyists, and PACs and instead prioritize the health of our families, climate, and democracy over fossil fuel industry profits.",
+        source = "http://nofossilfuelmoney.org/"
+      }
+  getQuestionInfo NuclearPowerToReduceEmissions =
+    Info
+      { header = "Nuclear Power To Reduce Emissions",
+        info = "",
+        source = ""
+      }
+  getQuestionInfo CarbonTax =
+    Info
+      { header = "The Carbon Tax",
+        info = "",
+        source = ""
+      }
+  getQuestionInfo ParisAgreement =
+    Info
+      { header = "The Paris Climate Agreement",
+        info = "",
+        source = ""
+      }
+  getQuestionInfo BanFracking =
+    Info
+      { header = "Fracking",
+        info = "",
+        source = ""
+      }
+  getQuestionInfo BanOffshoreDrilling =
+    Info
+      { header = "Offshore Drilling",
+        info = "",
+        source = ""
+      }
+  getQuestionInfo DeclareClimateChangeANationalEmergency =
+    Info
+      { header = "Declaring Climate Change as a National Emergency",
+        info = "",
+        source = ""
+      }
 
   getTopic = const "Enviroment"
 
@@ -184,10 +262,30 @@ instance IsTopic Guns where
   getQuestion GunBuyBack = "The government should implement a gun buy-back program"
   getQuestion RequireGunLicense = "All guns should require a license to own"
 
-  getQuestionInfo UniversalBackgroundChecks = "TODO: add information about questions"
-  getQuestionInfo BanAssaultWeapons = "TODO: add information about questions"
-  getQuestionInfo GunBuyBack = "TODO: add information about questions"
-  getQuestionInfo RequireGunLicense = "TODO: add information about questions"
+  getQuestionInfo UniversalBackgroundChecks =
+    Info
+      { header = "Universal Background Checks",
+        info = "",
+        source = ""
+      }
+  getQuestionInfo BanAssaultWeapons =
+    Info
+      { header = "Assault Weapons",
+        info = "",
+        source = ""
+      }
+  getQuestionInfo GunBuyBack =
+    Info
+      { header = "Gun Buy Back",
+        info = "",
+        source = ""
+      }
+  getQuestionInfo RequireGunLicense =
+    Info
+      { header = "Gun Licenses",
+        info = "",
+        source = ""
+      }
 
   getTopic = const "Guns"
 
@@ -212,10 +310,30 @@ instance IsTopic Healthcare where
   getQuestion EliminatePrivateHealthInsurance = "Private health insurance should be eliminated"
   getQuestion ImportPrescriptionDrugsFromCanada = "The US should import some prescription drugs from Canada"
 
-  getQuestionInfo SinglePayerSystem = "TODO: add information about questions" -- Single-Payer Bill (H.R. 676)
-  getQuestionInfo PublicHealthInsurance = "TODO: add information about questions"
-  getQuestionInfo EliminatePrivateHealthInsurance = "TODO: add information about questions"
-  getQuestionInfo ImportPrescriptionDrugsFromCanada = "TODO: add information about questions"
+  getQuestionInfo SinglePayerSystem =
+    Info
+      { header = "Single Payer Healthcare",
+        info = "",
+        source = ""
+      }
+  getQuestionInfo PublicHealthInsurance =
+    Info
+      { header = "Public Health Insurance",
+        info = "",
+        source = ""
+      }
+  getQuestionInfo EliminatePrivateHealthInsurance =
+    Info
+      { header = "Private Health Insurance",
+        info = "",
+        source = ""
+      }
+  getQuestionInfo ImportPrescriptionDrugsFromCanada =
+    Info
+      { header = "Importing Prescription Drugs from Canada",
+        info = "",
+        source = ""
+      }
 
   getTopic = const "Healthcare"
 
@@ -239,7 +357,7 @@ data Immigration
 
 instance IsTopic Immigration where
 
-  getQuestion TrumpBorderWall = "Trump's border wall is a good idea"
+  getQuestion TrumpBorderWall = "The border wall is a good idea"
   getQuestion TrumpTravelBan = "Trump's travel ban was a good idea"
   getQuestion SupportDACA = "The US should support DACA"
   getQuestion AllowMoreVisaWorkers = "The US should allow more visa workers in"
@@ -248,14 +366,54 @@ instance IsTopic Immigration where
   getQuestion AbolishICE = "ICE should be abolished"
   getQuestion DecriminalizeIllegalImmigration = "Illegal immigration shouldn't be a crime"
 
-  getQuestionInfo TrumpBorderWall = "TODO: add information about questions"
-  getQuestionInfo TrumpTravelBan = "TODO: add information about questions"
-  getQuestionInfo SupportDACA = "TODO: add information about questions"
-  getQuestionInfo AllowMoreVisaWorkers = "TODO: add information about questions"
-  getQuestionInfo DemilitarizeMexicoUSBorder = "TODO: add information about questions"
-  getQuestionInfo InvestInPortsOfEntry = "TODO: add information about questions"
-  getQuestionInfo AbolishICE = "TODO: add information about questions"
-  getQuestionInfo DecriminalizeIllegalImmigration = "TODO: add information about questions"
+  getQuestionInfo TrumpBorderWall =
+    Info
+      { header = "The Border Wall",
+        info = "",
+        source = ""
+      }
+  getQuestionInfo TrumpTravelBan =
+    Info
+      { header = "Trump's Travel Ban",
+        info = "",
+        source = ""
+      }
+  getQuestionInfo SupportDACA =
+    Info
+      { header = "DACA",
+        info = "",
+        source = ""
+      }
+  getQuestionInfo AllowMoreVisaWorkers =
+    Info
+      { header = "Visa Workers",
+        info = "",
+        source = ""
+      }
+  getQuestionInfo DemilitarizeMexicoUSBorder =
+    Info
+      { header = "Demilitarizing the Mexico-US Border",
+        info = "",
+        source = ""
+      }
+  getQuestionInfo InvestInPortsOfEntry =
+    Info
+      { header = "Ports of Entry",
+        info = "",
+        source = ""
+      }
+  getQuestionInfo AbolishICE =
+    Info
+      { header = "ICE",
+        info = "",
+        source = ""
+      }
+  getQuestionInfo DecriminalizeIllegalImmigration =
+    Info
+      { header = "Illegal Immigration",
+        info = "",
+        source = ""
+      }
 
   getTopic = const "Immigration"
 
