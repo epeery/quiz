@@ -14,7 +14,7 @@ export const quizMachine = createMachine({
   initial: 'active',
   context: {
     questionNumber: 0,
-//  data Question = Question {question :: Text, questionInfo :: Text, topic :: Text, id :: Topics}
+//  Question {question :: Text, questionInfo :: Text, topic :: Text, id :: Topics}
 //  data :: [Question] - Response from API
     data: [],
 //  answers :: [(Topics, Float)] - User's responses to questions
