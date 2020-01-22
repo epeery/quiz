@@ -1,0 +1,6 @@
+.envrc
+cabal.project
+dist-newstyle/
+quiz.cabal
+node_modules/
+quiz.cabal
