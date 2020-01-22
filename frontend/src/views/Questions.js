@@ -22,7 +22,7 @@ function Questions({data, onBack, onResults}) {
       : undefined
   )
 
-  const backClass = () => questionNumber === 0 ? 'back dimmed' : 'back'
+  const backClass = () => (questionNumber === 0 && current.value !== 'info') ? 'back dimmed' : 'back'
 
   return (
     <div className='Questions'>
@@ -36,30 +36,41 @@ function Questions({data, onBack, onResults}) {
           <p>Back</p>
         </div>
 
-        <div onClick={() => send('SKIP')} className='skip'>
-          <p>{current.context.answers.hasOwnProperty(idToString(data[questionNumber].id)) ? 'Next' : 'Skip' }</p>
-          <div className="icon-container">
-            <svg width='100%' height='100%' viewBox='0 0 14 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
-              <path d='M13 6H1M1 6L6.14286 1M1 6L6.14286 11' stroke='#31456A' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'/>
-            </svg>
-          </div>
-        </div>
+          {current.value === 'active' && (
+            <div onClick={() => send('SKIP')} className='skip'>
+              <p>{current.context.answers.hasOwnProperty(idToString(data[questionNumber].id)) ? 'Next' : 'Skip' }</p>
+              <div className="icon-container">
+                <svg width='100%' height='100%' viewBox='0 0 14 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                  <path d='M13 6H1M1 6L6.14286 1M1 6L6.14286 11' stroke='#31456A' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'/>
+                </svg>
+              </div>
+            </div>
+          )}
+
       </nav>
 
-      <Question number={questionNumber + 1} topic={data[questionNumber].topic} selected={getSelected()}>
-        {data[questionNumber].question}
-      </Question>
+      {current.value === 'active' && (
+        <Question number={questionNumber + 1} topic={data[questionNumber].topic} selected={getSelected()} info={data[questionNumber].questionInfo} >
+          {data[questionNumber].question}
+        </Question>
+      )}
+      {current.value === 'info' && (
+        <Info>
+          {data[questionNumber].questionInfo}
+        </Info>
+      )}
+
     </div>
   );
 
 
 
-  function Question({children, number, topic, selected}) {
+  function Question({children, number, topic, selected, info}) {
     const buttonClass = num => selected === num ? 'opinion-button selected' : 'opinion-button'
     return (
       <>
         <h3>Question {number} - {topic}</h3>
-        <h2 className='question'><span>{children}</span></h2>
+        <h2 className='question' onClick={() => send('INFO')}><span>{children}</span></h2>
         <div className='opinion-container'>
           <button onClick={() => send({type: 'SUBMIT', value: 1})} className={buttonClass(1)} data-color='1'>
             <p>Strongly Agree</p>
@@ -81,6 +92,14 @@ function Questions({data, onBack, onResults}) {
             <p>Strongly Disagree</p>
           </button>
         </div>
+      </>
+    );
+  }
+
+  function Info({children}) {
+    return (
+      <>
+        <h2 className='info'>{children}</h2>
       </>
     );
   }
