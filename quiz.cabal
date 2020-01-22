@@ -1,0 +1,69 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 0583b7bd37e9d7751b0ab03611de60293f6de397544bc0e82de62385c019128c
+
+name:                quiz
+version:             0.1.0.0
+author:              Eli Peery
+maintainer:          eli.g.peery@gmail.com
+copyright:           2020 Eli Peery
+license:             BSD3
+build-type:          Simple
+extra-source-files:
+    README.md
+    CHANGELOG.md
+
+library
+  exposed-modules:
+      Quiz
+      Quiz.Candidates
+      Quiz.Rest
+      Quiz.Topics
+  other-modules:
+      Paths_quiz
+  hs-source-dirs:
+      src
+  default-extensions: DataKinds FlexibleContexts GADTs LambdaCase PolyKinds RankNTypes ScopedTypeVariables TypeApplications TypeOperators TypeFamilies
+  ghc-options: -O2 -flate-specialise -fspecialise-aggressively -fplugin=Polysemy.Plugin -Wall -Wno-unused-binds -Wincomplete-uni-patterns -Wincomplete-record-updates -Wpartial-fields -Wmissing-home-modules -Widentities -Wredundant-constraints -Wcpp-undef -Wmissing-export-lists
+  build-depends:
+      aeson
+    , base >=4.12 && <4.13
+    , bytestring
+    , containers
+    , mtl
+    , optparse-generic
+    , polysemy
+    , polysemy-plugin
+    , servant
+    , servant-server
+    , text
+    , warp
+  default-language: Haskell2010
+
+executable political-quiz
+  main-is: Main.hs
+  other-modules:
+      Paths_quiz
+  hs-source-dirs:
+      app
+  default-extensions: DataKinds FlexibleContexts GADTs LambdaCase PolyKinds RankNTypes ScopedTypeVariables TypeApplications TypeOperators TypeFamilies
+  ghc-options: -O2 -flate-specialise -fspecialise-aggressively -fplugin=Polysemy.Plugin -Wall -Wno-unused-binds -Wincomplete-uni-patterns -Wincomplete-record-updates -Wpartial-fields -Wmissing-home-modules -Widentities -Wredundant-constraints -Wcpp-undef -Wmissing-export-lists -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      aeson
+    , base >=4.12 && <4.13
+    , bytestring
+    , containers
+    , mtl
+    , optparse-generic
+    , polysemy
+    , polysemy-plugin
+    , quiz
+    , servant
+    , servant-server
+    , text
+    , warp
+  default-language: Haskell2010
