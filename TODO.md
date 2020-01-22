@@ -1,5 +1,6 @@
 # Todos
-* Implement question info functionality
+
+* Change question info to be actual information
 
 * Change result percentages from integers to single decimal place
 
@@ -8,3 +9,7 @@
 * Add a way to get user feedback on results
 
 * Replace candidate photos
+
+### Completed todo items
+
+* <del>Implement question info functionality
