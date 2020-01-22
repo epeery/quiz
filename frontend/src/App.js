@@ -5,7 +5,9 @@ import Start from './views/Start.js'
 
 function App() {
   return (
-    <Start />
+    <div className="App">
+      <Start />
+    </div>
   );
 }
 
