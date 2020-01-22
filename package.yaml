@@ -54,10 +54,6 @@ dependencies:
 
 library:
   source-dirs: src
-  other-modules:
-    - Lib
-    - Old
-    - Blog
 
 executables:
   political-quiz:
