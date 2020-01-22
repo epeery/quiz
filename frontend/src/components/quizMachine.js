@@ -55,6 +55,12 @@ export const quizMachine = createMachine({
             target: 'results',
           }
         ],
+        INFO: 'info',
+      }
+    },
+    info: {
+      on: {
+        BACK: 'active'
       }
     },
     results: {
