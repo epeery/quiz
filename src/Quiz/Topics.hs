@@ -22,7 +22,6 @@ module Quiz.Topics
     getTopic,
     getTopics,
     percentageMatch,
-    questions,
     inject,
     topic,
   )
