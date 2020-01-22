@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 0583b7bd37e9d7751b0ab03611de60293f6de397544bc0e82de62385c019128c
+-- hash: f382103c2b2efe7728c896fcca228964714e11cad2478d8e6dd0e709dfbdfaaa
 
 name:                quiz
 version:             0.1.0.0
@@ -44,7 +44,7 @@ library
     , warp
   default-language: Haskell2010
 
-executable political-quiz
+executable quiz-server
   main-is: Main.hs
   other-modules:
       Paths_quiz
