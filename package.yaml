@@ -9,6 +9,7 @@ copyright:           "2020 Eli Peery"
 extra-source-files:
 - README.md
 - CHANGELOG.md
+- TODO.md
 
 ghc-options:
 - -O2
