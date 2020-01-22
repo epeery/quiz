@@ -42,7 +42,7 @@ body {
   min-height: 100vh;
 }
 
-.Start, .Questions, .Results {
+.App {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,7 +50,14 @@ body {
   min-height: 100vh;
 }
 
+.Start, .Questions, .Results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .Questions {
+  height: 680rem;
   h2 {
     width: 345rem;
     height: 70rem;
@@ -310,6 +317,10 @@ h3 {
 
     text-shadow: 1rem 2rem 4rem rgba(0, 0, 0, 0.15);
   }
+}
+
+.info {
+  text-align: left;
 }
 
 .candidates {
