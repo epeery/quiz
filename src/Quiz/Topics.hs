@@ -18,6 +18,7 @@ module Quiz.Topics
     Topics,
     comparePositions,
     getQuestion,
+    getQuestionInfo,
     getTopic,
     getTopics,
     percentageMatch,
@@ -75,6 +76,8 @@ class IsTopic a where
 
   getQuestion :: a -> Text
 
+  getQuestionInfo :: a -> Text
+
   getTopic :: a -> Text
 
 class Injectable a where
@@ -84,6 +87,9 @@ instance (IsTopic a, IsTopic b) => IsTopic (a + b) where
 
   getQuestion (InL x) = getQuestion x
   getQuestion (InR y) = getQuestion y
+
+  getQuestionInfo (InL x) = getQuestionInfo x
+  getQuestionInfo (InR y) = getQuestionInfo y
 
   getTopic (InL x) = getTopic x
   getTopic (InR y) = getTopic y
@@ -108,6 +114,13 @@ instance IsTopic Education where
   getQuestion UniversalChildCare = "I am in favor of universal child care"
   getQuestion UniversalPreKindergarten = "I am in favor of universal pre-kindergarten"
   getQuestion IncreaseFundingForPublicEducation = "The government should increase funding for primary and secondary public education"
+
+  getQuestionInfo TuitionFreePublicCollege = "TODO: add information about questions"
+  getQuestionInfo DebtReliefForStudentLoans = "TODO: add information about questions"
+  getQuestionInfo AffirmativeAction = "TODO: add information about questions"
+  getQuestionInfo UniversalChildCare = "TODO: add information about questions"
+  getQuestionInfo UniversalPreKindergarten = "TODO: add information about questions"
+  getQuestionInfo IncreaseFundingForPublicEducation = "TODO: add information about questions"
 
   getTopic = const "Education"
 
@@ -140,6 +153,15 @@ instance IsTopic Enviroment where
   getQuestion BanOffshoreDrilling = "Offshore drilling should be banned"
   getQuestion DeclareClimateChangeANationalEmergency = "Climate change should be declared a national emergency"
 
+  getQuestionInfo GreenNewDeal = "TODO: add information about questions"
+  getQuestionInfo NoFossilFuelMoneyPledge = "TODO: add information about questions"
+  getQuestionInfo NuclearPowerToReduceEmissions = "TODO: add information about questions"
+  getQuestionInfo CarbonTax = "TODO: add information about questions"
+  getQuestionInfo ParisAgreement = "TODO: add information about questions"
+  getQuestionInfo BanFracking = "TODO: add information about questions"
+  getQuestionInfo BanOffshoreDrilling = "TODO: add information about questions"
+  getQuestionInfo DeclareClimateChangeANationalEmergency = "TODO: add information about questions"
+
   getTopic = const "Enviroment"
 
 instance Injectable Enviroment where
@@ -163,6 +185,11 @@ instance IsTopic Guns where
   getQuestion GunBuyBack = "The government should implement a gun buy-back program"
   getQuestion RequireGunLicense = "All guns should require a license to own"
 
+  getQuestionInfo UniversalBackgroundChecks = "TODO: add information about questions"
+  getQuestionInfo BanAssaultWeapons = "TODO: add information about questions"
+  getQuestionInfo GunBuyBack = "TODO: add information about questions"
+  getQuestionInfo RequireGunLicense = "TODO: add information about questions"
+
   getTopic = const "Guns"
 
 instance Injectable Guns where
@@ -185,6 +212,11 @@ instance IsTopic Healthcare where
   getQuestion PublicHealthInsurance = "The US should have a public health insurance option for those who want it"
   getQuestion EliminatePrivateHealthInsurance = "Private health insurance should be eliminated"
   getQuestion ImportPrescriptionDrugsFromCanada = "The US should import some prescription drugs from Canada"
+
+  getQuestionInfo SinglePayerSystem = "TODO: add information about questions" -- Single-Payer Bill (H.R. 676)
+  getQuestionInfo PublicHealthInsurance = "TODO: add information about questions"
+  getQuestionInfo EliminatePrivateHealthInsurance = "TODO: add information about questions"
+  getQuestionInfo ImportPrescriptionDrugsFromCanada = "TODO: add information about questions"
 
   getTopic = const "Healthcare"
 
@@ -216,6 +248,15 @@ instance IsTopic Immigration where
   getQuestion InvestInPortsOfEntry = "The US should invest in ports of entry"
   getQuestion AbolishICE = "ICE should be abolished"
   getQuestion DecriminalizeIllegalImmigration = "Illegal immigration shouldn't be a crime"
+
+  getQuestionInfo TrumpBorderWall = "TODO: add information about questions"
+  getQuestionInfo TrumpTravelBan = "TODO: add information about questions"
+  getQuestionInfo SupportDACA = "TODO: add information about questions"
+  getQuestionInfo AllowMoreVisaWorkers = "TODO: add information about questions"
+  getQuestionInfo DemilitarizeMexicoUSBorder = "TODO: add information about questions"
+  getQuestionInfo InvestInPortsOfEntry = "TODO: add information about questions"
+  getQuestionInfo AbolishICE = "TODO: add information about questions"
+  getQuestionInfo DecriminalizeIllegalImmigration = "TODO: add information about questions"
 
   getTopic = const "Immigration"
 
