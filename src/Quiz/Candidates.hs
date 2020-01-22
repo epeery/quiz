@@ -2,8 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Quiz.Candidates
-  ( CandidateName,
-    Person,
+  ( Person,
     Results,
     Respondant (..),
     biden,
@@ -26,23 +25,6 @@ import qualified Data.Map.Strict as M
 import Data.Text (Text)
 import GHC.Generics
 import Quiz.Topics
-
-data CandidateName
-  = Biden
-  | Bloomberg
-  | Booker
-  | Buttigieg
-  | Gabbard
-  | Klobuchar
-  | Sanders
-  | Steyer
-  | Warren
-  | Yang
-  deriving (Show, Eq, Ord, Generic)
-
-instance FromJSON CandidateName
-
-instance ToJSON CandidateName
 
 data Respondant r as
   = Respondant
@@ -362,146 +344,6 @@ yangPositions =
       (topic InvestInPortsOfEntry, 1),
       (topic AbolishICE, -1),
       (topic DecriminalizeIllegalImmigration, 0.75) -- Still should work to combat drug and human trafficking but that's it
-    ]
-
-eli :: Person String
-eli = Respondant "Eli" eliPositions "https://www.politico.com/interactives/uploads/2020-elections/headshots/png/300/amy-klobuchar.png"
-
-eliPositions :: Positions
-eliPositions =
-  M.fromList
-    [ (topic TuitionFreePublicCollege, -1),
-      (topic DebtReliefForStudentLoans, -1),
-      (topic AffirmativeAction, -1),
-      (topic UniversalChildCare, -1),
-      (topic UniversalPreKindergarten, -1),
-      (topic IncreaseFundingForPublicEducation, -1),
-      (topic GreenNewDeal, -1),
-      (topic NuclearPowerToReduceEmissions, 1),
-      (topic CarbonTax, -1),
-      (topic ParisAgreement, -1),
-      (topic BanFracking, -0.5),
-      (topic BanOffshoreDrilling, -0.5),
-      (topic DeclareClimateChangeANationalEmergency, -0.5),
-      (topic UniversalBackgroundChecks, -1),
-      (topic BanAssaultWeapons, -1),
-      (topic GunBuyBack, -1),
-      (topic RequireGunLicense, -1),
-      (topic SinglePayerSystem, -1),
-      (topic PublicHealthInsurance, -0.5),
-      (topic EliminatePrivateHealthInsurance, -1),
-      (topic TrumpBorderWall, 1),
-      (topic TrumpTravelBan, 0.5),
-      (topic SupportDACA, -1),
-      (topic AllowMoreVisaWorkers, -1),
-      (topic DemilitarizeMexicoUSBorder, -1),
-      (topic AbolishICE, -1),
-      (topic DecriminalizeIllegalImmigration, -1)
-    ]
-
-naia :: Person String
-naia = Respondant "Naia" naiaPositions "https://www.politico.com/interactives/uploads/2020-elections/headshots/png/300/amy-klobuchar.png"
-
-naiaPositions :: Positions
-naiaPositions =
-  M.fromList
-    [ (topic TuitionFreePublicCollege, 0.5),
-      (topic DebtReliefForStudentLoans, -0.5),
-      (topic AffirmativeAction, -0.5),
-      (topic UniversalChildCare, 0.5),
-      (topic UniversalPreKindergarten, 0.5),
-      (topic IncreaseFundingForPublicEducation, -0.5),
-      (topic GreenNewDeal, 0.5),
-      (topic NoFossilFuelMoneyPledge, 0.5),
-      (topic NuclearPowerToReduceEmissions, 0.5),
-      (topic CarbonTax, 0.25),
-      (topic BanFracking, 0.5),
-      (topic BanOffshoreDrilling, -0.5),
-      (topic DeclareClimateChangeANationalEmergency, 0.5),
-      (topic UniversalBackgroundChecks, 0.5),
-      (topic BanAssaultWeapons, -0.5),
-      (topic GunBuyBack, 0.5),
-      (topic RequireGunLicense, 0.5),
-      (topic SinglePayerSystem, -0.25),
-      (topic PublicHealthInsurance, 0.5),
-      (topic EliminatePrivateHealthInsurance, -0.5),
-      (topic TrumpBorderWall, -0.5),
-      (topic TrumpTravelBan, -0.5),
-      (topic SupportDACA, 0.5),
-      (topic AllowMoreVisaWorkers, -0.5),
-      (topic AbolishICE, -0.5),
-      (topic DecriminalizeIllegalImmigration, -0.5)
-    ]
-
-papa :: Person String
-papa = Respondant "Papa" papaPositions "https://www.politico.com/interactives/uploads/2020-elections/headshots/png/300/amy-klobuchar.png"
-
-papaPositions :: Positions
-papaPositions =
-  M.fromList
-    [ (topic TuitionFreePublicCollege, 0.5),
-      (topic DebtReliefForStudentLoans, 1),
-      (topic AffirmativeAction, 1),
-      (topic UniversalChildCare, 0.5),
-      (topic UniversalPreKindergarten, 0.5),
-      (topic IncreaseFundingForPublicEducation, 1),
-      (topic GreenNewDeal, 0.5),
-      (topic NuclearPowerToReduceEmissions, 0.5),
-      (topic CarbonTax, 0.5),
-      (topic ParisAgreement, 1),
-      (topic BanFracking, 0.5),
-      (topic BanOffshoreDrilling, -0.5),
-      (topic DeclareClimateChangeANationalEmergency, 1),
-      (topic UniversalBackgroundChecks, 1),
-      (topic BanAssaultWeapons, 1),
-      (topic GunBuyBack, 0.5),
-      (topic RequireGunLicense, 1),
-      (topic SinglePayerSystem, 0.5),
-      (topic PublicHealthInsurance, 0.5),
-      (topic EliminatePrivateHealthInsurance, -1),
-      (topic ImportPrescriptionDrugsFromCanada, 1),
-      (topic TrumpBorderWall, -1),
-      (topic TrumpTravelBan, -1),
-      (topic SupportDACA, 0.5),
-      (topic AllowMoreVisaWorkers, 0.5),
-      (topic InvestInPortsOfEntry, 0.5),
-      (topic AbolishICE, 0.5),
-      (topic DecriminalizeIllegalImmigration, 0.5)
-    ]
-
-bubbe :: Person String
-bubbe = Respondant "Bubbe" bubbePositions "https://www.politico.com/interactives/uploads/2020-elections/headshots/png/300/amy-klobuchar.png"
-
-bubbePositions :: Positions
-bubbePositions =
-  M.fromList
-    [ (topic TuitionFreePublicCollege, 1),
-      (topic DebtReliefForStudentLoans, 0.5),
-      (topic AffirmativeAction, -0.5),
-      (topic UniversalChildCare, 0.5),
-      (topic UniversalPreKindergarten, 1),
-      (topic IncreaseFundingForPublicEducation, 1),
-      (topic GreenNewDeal, 0.5),
-      (topic NoFossilFuelMoneyPledge, 0.5),
-      (topic NuclearPowerToReduceEmissions, -0.5),
-      (topic CarbonTax, 0.5),
-      (topic ParisAgreement, 1),
-      (topic BanFracking, 1),
-      (topic DeclareClimateChangeANationalEmergency, 1),
-      (topic UniversalBackgroundChecks, 1),
-      (topic BanAssaultWeapons, 1),
-      (topic GunBuyBack, 0.5),
-      (topic RequireGunLicense, 0.5),
-      (topic PublicHealthInsurance, 0.5),
-      (topic EliminatePrivateHealthInsurance, -1),
-      (topic ImportPrescriptionDrugsFromCanada, 1),
-      (topic TrumpBorderWall, -1),
-      (topic TrumpTravelBan, -1),
-      (topic SupportDACA, 1),
-      (topic AllowMoreVisaWorkers, -0.5),
-      (topic DemilitarizeMexicoUSBorder, -0.5),
-      (topic InvestInPortsOfEntry, 1),
-      (topic AbolishICE, 0.5)
     ]
 
 -- Ordered in terms of popularity.
