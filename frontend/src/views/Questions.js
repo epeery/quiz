@@ -50,13 +50,12 @@ function Questions({data, onBack, onResults}) {
       </nav>
 
       {current.value === 'active' && (
-        <Question number={questionNumber + 1} topic={data[questionNumber].topic} selected={getSelected()} info={data[questionNumber].questionInfo} >
+        <Question number={questionNumber + 1} topic={data[questionNumber].topic} selected={getSelected()}>
           {data[questionNumber].question}
         </Question>
       )}
       {current.value === 'info' && (
-        <Info>
-          {data[questionNumber].questionInfo}
+        <Info info={data[questionNumber].questionInfo}>
         </Info>
       )}
 
@@ -65,7 +64,7 @@ function Questions({data, onBack, onResults}) {
 
 
 
-  function Question({children, number, topic, selected, info}) {
+  function Question({children, number, topic, selected}) {
     const buttonClass = num => selected === num ? 'opinion-button selected' : 'opinion-button'
     return (
       <>
@@ -96,11 +95,14 @@ function Questions({data, onBack, onResults}) {
     );
   }
 
-  function Info({children}) {
+  function Info({info}) {
+    console.log(info);
     return (
-      <>
-        <h2 className='info'>{children}</h2>
-      </>
+      <div className='info'>
+        <h2 className='header'>{info.header}</h2>
+        <p className='information'>“{info.info}”</p>
+        <a className='source' href={info.source} target='_blank'><div>{info.source}</div></a>
+      </div>
     );
   }
 }
