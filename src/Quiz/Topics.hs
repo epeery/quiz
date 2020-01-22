@@ -300,6 +300,3 @@ percentageMatch p1 p2 = if highest == 0 then 0 else abs (result' - highest) / hi
     highest = 1.5 * (fromIntegral l)
     result = comparePositions' p1' p2
     result' = if result > highest then highest else result
-
-questions :: [(Text, Topics)]
-questions = (\f -> (getQuestion f, f)) <$> getTopics @'[Education, Enviroment, Guns, Healthcare, Immigration]
