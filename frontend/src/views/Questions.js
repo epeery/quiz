@@ -46,7 +46,7 @@ function Questions({data, onBack, onResults}) {
       content: ({goTo}) => (
         <div className='tutorial'>
           <h2>These are stances</h2>
-          <h3>You can select the one that reflects how you feel about the opinion</h3>
+          <h3>You can select the one that best reflects how you feel about the opinion</h3>
 
           <button onClick={() => goTo(3)} className='opinion-button' data-color='2'>
             <p>Next</p>
@@ -126,6 +126,7 @@ function Questions({data, onBack, onResults}) {
         disableInteraction={true}
         closeWithMask={false}
         onRequestClose={() => setOpen(false)} />
+
       <div className='Questions'>
         <nav>
           <div onClick={() => send('BACK')} className={backClass()} >
@@ -168,7 +169,7 @@ function Questions({data, onBack, onResults}) {
   function Question({children, number, topic, selected}) {
     const buttonClass = num => selected === num ? 'opinion-button selected' : 'opinion-button'
     return (
-      <div className='question-container'>
+      <>
         <h3>Question {number} - {topic}</h3>
         <h2 className='question'><span onClick={() => send('INFO')}>{children}</span></h2>
         <div className='opinion-container'>
@@ -192,7 +193,7 @@ function Questions({data, onBack, onResults}) {
             <p>Strongly Disagree</p>
           </button>
         </div>
-      </div>
+      </>
     );
   }
 
