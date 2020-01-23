@@ -17,8 +17,8 @@ function Questions({data, onBack, onResults}) {
   const questionNumber = current.context.questionNumber;
 
   const getSelected = () => (
-    current.context.answers.hasOwnProperty(idToString(data[questionNumber].id))
-      ? current.context.answers[idToString(data[questionNumber].id)]
+    current.context.answers.hasOwnProperty(idToString(data[questionNumber].qId))
+      ? current.context.answers[idToString(data[questionNumber].qId)]
       : undefined
   )
 
@@ -38,7 +38,7 @@ function Questions({data, onBack, onResults}) {
 
           {current.value === 'active' && (
             <div onClick={() => send('SKIP')} className='skip'>
-              <p>{current.context.answers.hasOwnProperty(idToString(data[questionNumber].id)) ? 'Next' : 'Skip' }</p>
+              <p>{current.context.answers.hasOwnProperty(idToString(data[questionNumber].qId)) ? 'Next' : 'Skip' }</p>
               <div className="icon-container">
                 <svg width='100%' height='100%' viewBox='0 0 14 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
                   <path d='M13 6H1M1 6L6.14286 1M1 6L6.14286 11' stroke='#31456A' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'/>
@@ -50,12 +50,12 @@ function Questions({data, onBack, onResults}) {
       </nav>
 
       {current.value === 'active' && (
-        <Question number={questionNumber + 1} topic={data[questionNumber].topic} selected={getSelected()}>
+        <Question number={questionNumber + 1} topic={data[questionNumber].questionTopic} selected={getSelected()}>
           {data[questionNumber].question}
         </Question>
       )}
       {current.value === 'info' && (
-        <Info info={data[questionNumber].questionInfo}>
+        <Info question={data[questionNumber]}>
         </Info>
       )}
 
@@ -95,13 +95,13 @@ function Questions({data, onBack, onResults}) {
     );
   }
 
-  function Info({info}) {
-    console.log(info);
+  function Info({question}) {
+    console.log(question);
     return (
       <div className='info'>
-        <h2 className='header'>{info.header}</h2>
-        <p className='information'>“{info.info}”</p>
-        <a className='source' href={info.source} target='_blank'><div>{info.source}</div></a>
+        <h2 className='header'>{question.header}</h2>
+        <p className='information'>“{question.info}”</p>
+        <a className='source' href={question.source} target='_blank'><div>{question.source}</div></a>
       </div>
     );
   }

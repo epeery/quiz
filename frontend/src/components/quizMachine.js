@@ -77,7 +77,7 @@ export const quizMachine = createMachine({
       questionNumber: (context, event) => context.questionNumber - 1
     }),
     storeAnswer: assign({
-      answers: (context, event) => ({ ...context.answers, [idToString(context.data[context.questionNumber].id)]: event.value })
+      answers: (context, event) => ({ ...context.answers, [idToString(context.data[context.questionNumber].qId)]: event.value })
       // answers: (context, event) => ({ ...context.answers, [context.data[context.questionNumber].id]: event.value })
     })
   }
