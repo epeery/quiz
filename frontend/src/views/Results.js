@@ -29,14 +29,17 @@ function Fetch({answers}) {
     case 'success':
       const candidates = current.context.data.sort(([_, a]) => (a + 1))
 
-      const winner = candidates[0][1] !== candidates[1][1] ? (
+      // const calcPercent = a => Math.round(a * 100)
+      const calcPercent = num => Math.round(((num * 100) + 0.00001) * 10) / 10
+
+      const winner = calcPercent(candidates[0][1]) !== calcPercent(candidates[1][1]) ? (
         <>
           <h1>We have a winner!</h1>
           <div className="candidate-pic-container large">
             <img className='candidate-pic large' src={candidates[0][0].rPic} alt={candidates[0][0].rName}/>
           </div>
           <h2>{candidates[0][0].rName}</h2>
-          <h3>{Math.round(candidates[0][1] * 100)}% match</h3>
+          <h3>{calcPercent(candidates[0][1])}% match</h3>
         </>
       ) : (<h1>It's a tie!</h1>);
       return (
@@ -45,7 +48,7 @@ function Fetch({answers}) {
             {winner}
           </div>
           {candidates.map(([candidate, amount], i) => {
-            const percent = Math.round(amount * 100);
+            const percent = calcPercent(amount);
 
             const color = percent > 70 ? 'blue1' :
                           percent > 50 ? 'blue2' :
