@@ -34,7 +34,7 @@ function Questions({data, onBack, onResults}) {
       content: ({goTo}) => (
         <div className='tutorial'>
           <h2>This is an opinion</h2>
-          <h3>You'll be shown 29 of these in total</h3>
+          <h3>You'll be shown { current.context.data.length } of these in total</h3>
           <button onClick={() => goTo(2)} className='opinion-button' data-color='2'>
             <p>Next</p>
           </button>
