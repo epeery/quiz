@@ -29,6 +29,7 @@ module Quiz.Topics
 where
 
 import Data.Aeson.Types
+import Data.List (filter)
 import Data.Map.Strict (Map)
 import qualified Data.Map.Strict as M
 import Data.Text (Text)
@@ -451,7 +452,7 @@ pos2 = M.fromList [(topic TrumpBorderWall, -1)]
 percentageMatch :: Positions -> Positions -> Double
 percentageMatch p1 p2 = if highest == 0 then 0 else abs (result' - highest) / highest
   where
-    p1' = M.toList p1
+    p1' = filter (\(_, n) -> n /= 0) $ M.toList p1
     l = length p1'
     -- Should in reality be 2 * l but 1.5 makes the results more interesting
     highest = 1.5 * (fromIntegral l)
