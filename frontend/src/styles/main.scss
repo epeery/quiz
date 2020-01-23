@@ -71,6 +71,20 @@ body {
   align-items: center;
 }
 
+.progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 8rem;
+  width: 100vw;
+
+  background: linear-gradient(-66deg, $blue1 0%, $blue2 25%, $cream 50%, $pink1 75%, $pink2 100%);
+  box-shadow: -1rem 2rem 2rem rgba(24, 55, 91, 0.1), inset 0rem -2rem 1rem rgba(39, 81, 126, 0.12), inset 0rem 0rem 4rem rgba(46, 68, 87, 0.02);
+
+  border-radius: 2rem;
+  transition: transform 1s ease;
+}
+
 nav {
   margin: 50rem 0 65rem 0;
   width: 100vw;
