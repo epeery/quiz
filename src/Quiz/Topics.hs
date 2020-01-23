@@ -14,16 +14,14 @@ module Quiz.Topics
     Guns (..),
     Healthcare (..),
     Immigration (..),
-    Info,
+    Question,
     Positions,
     Topics,
     comparePositions,
     getQuestion,
-    getQuestionInfo,
-    getTopic,
-    getTopics,
     inject,
     percentageMatch,
+    questions,
     topic,
   )
 where
@@ -74,36 +72,32 @@ instance (Injectable a, Bounded a, Enum a, IsTopicList xs) => IsTopicList (a ': 
   getTopics = (inject @a <$> [minBound .. maxBound]) ++ getTopics @xs
 
 class IsTopic a where
-
-  getQuestion :: a -> Text
-
-  getQuestionInfo :: a -> Info
-
-  getTopic :: a -> Text
+  getQuestion :: a -> Question
 
 class Injectable a where
   inject :: a -> Topics
 
 instance (IsTopic a, IsTopic b) => IsTopic (a + b) where
-
   getQuestion (InL x) = getQuestion x
   getQuestion (InR y) = getQuestion y
-
-  getQuestionInfo (InL x) = getQuestionInfo x
-  getQuestionInfo (InR y) = getQuestionInfo y
-
-  getTopic (InL x) = getTopic x
-  getTopic (InR y) = getTopic y
 
 topic :: (a :<: b) => a -> b
 topic = inj
 
-data Info = Info {header :: Text, info :: Text, source :: Text}
+data Question
+  = Question
+      { question :: Text,
+        header :: Text,
+        info :: Text,
+        source :: Text,
+        questionTopic :: Text,
+        qId :: Topics
+      }
   deriving (Generic)
 
-instance FromJSON Info
+instance FromJSON Question
 
-instance ToJSON Info
+instance ToJSON Question
 
 data Education
   = TuitionFreePublicCollege
@@ -115,52 +109,60 @@ data Education
   deriving (Show, Read, Eq, Ord, Bounded, Enum, Generic)
 
 instance IsTopic Education where
-
-  getQuestion TuitionFreePublicCollege = "Public college should be tuition free"
-  getQuestion DebtReliefForStudentLoans = "The government should offer debt relief for student loans"
-  getQuestion AffirmativeAction = "Affirmative action is a fundamentally good idea"
-  getQuestion UniversalChildCare = "I am in favor of universal child care"
-  getQuestion UniversalPreKindergarten = "I am in favor of universal pre-kindergarten"
-  getQuestion IncreaseFundingForPublicEducation = "The government should increase funding for primary and secondary public education"
-
-  getQuestionInfo TuitionFreePublicCollege =
-    Info
+  getQuestion TuitionFreePublicCollege =
+    Question
       { header = "Tuition Free Public College",
         info = "Most Democrats have gotten behind the idea of some form of tuition-free or debt-free college, but they disagree about how much of the tab should be covered. Several candidates have called for making four years of public college free for students under a certain income threshold while others would cover only community college or technical school.",
-        source = "https://www.politico.com/2020-election/candidates-views-on-the-issues/education-reform/free-college/"
+        source = "https://www.politico.com/2020-election/candidates-views-on-the-issues/education-reform/free-college/",
+        questionTopic = "Education",
+        question = "Public college should be tuition free",
+        qId = topic TuitionFreePublicCollege
       }
-  getQuestionInfo DebtReliefForStudentLoans =
-    Info
+  getQuestion DebtReliefForStudentLoans =
+    Question
       { header = "Debt Relief For Student Loans",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Education",
+        question = "The government should offer debt relief for student loans",
+        qId = topic DebtReliefForStudentLoans
       }
-  getQuestionInfo AffirmativeAction =
-    Info
+  getQuestion AffirmativeAction =
+    Question
       { header = "Affirmative Action",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Education",
+        question = "Affirmative action is a fundamentally good idea",
+        qId = topic AffirmativeAction
       }
-  getQuestionInfo UniversalChildCare =
-    Info
+  getQuestion UniversalChildCare =
+    Question
       { header = "Universal Child Care",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Education",
+        question = "I am in favor of universal child care",
+        qId = topic UniversalChildCare
       }
-  getQuestionInfo UniversalPreKindergarten =
-    Info
+  getQuestion UniversalPreKindergarten =
+    Question
       { header = "Universal Pre-Kindergarten",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Education",
+        question = "I am in favor of universal pre-kindergarten",
+        qId = topic UniversalPreKindergarten
       }
-  getQuestionInfo IncreaseFundingForPublicEducation =
-    Info
+  getQuestion IncreaseFundingForPublicEducation =
+    Question
       { header = "Increasing Funding For Public Education",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Education",
+        question = "The government should increase funding for primary and secondary public education",
+        qId = topic IncreaseFundingForPublicEducation
       }
-
-  getTopic = const "Education"
 
 instance Injectable Education where
   inject = topic
@@ -181,66 +183,78 @@ data Enviroment
   deriving (Show, Read, Eq, Ord, Bounded, Enum, Generic)
 
 instance IsTopic Enviroment where
-
-  getQuestion GreenNewDeal = "The Green New Deal is a good idea"
-  getQuestion NoFossilFuelMoneyPledge = "It is important to me that my candidate has taken the No Fossil Fuel Money Pledge"
-  getQuestion NuclearPowerToReduceEmissions = "Leveraging nuclear power is a good way for the US to reduce emissions"
-  getQuestion CarbonTax = "Companies should be have to pay more taxes if they have higher carbon emissions"
-  getQuestion ParisAgreement = "The US should rejoin the Paris Climate Agreement"
-  getQuestion BanFracking = "Fracking should be banned in the US"
-  getQuestion BanOffshoreDrilling = "Offshore drilling should be banned"
-  getQuestion DeclareClimateChangeANationalEmergency = "Climate change should be declared a national emergency"
-
-  getQuestionInfo GreenNewDeal =
-    Info
+  getQuestion GreenNewDeal =
+    Question
       { header = "The Green New Deal",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Enviroment",
+        question = "The Green New Deal is a good idea",
+        qId = topic GreenNewDeal
       }
-  getQuestionInfo NoFossilFuelMoneyPledge =
-    Info
+  getQuestion NoFossilFuelMoneyPledge =
+    Question
       { header = "The No Fossil Fuel Money Pledge",
         info = "I pledge not to take contributions over $200 from oil, gas, and coal industry executives, lobbyists, and PACs and instead prioritize the health of our families, climate, and democracy over fossil fuel industry profits.",
-        source = "http://nofossilfuelmoney.org/"
+        source = "http://nofossilfuelmoney.org/",
+        questionTopic = "Enviroment",
+        question = "It is important to me that my candidate has taken the No Fossil Fuel Money Pledge",
+        qId = topic NoFossilFuelMoneyPledge
       }
-  getQuestionInfo NuclearPowerToReduceEmissions =
-    Info
+  getQuestion NuclearPowerToReduceEmissions =
+    Question
       { header = "Nuclear Power To Reduce Emissions",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Enviroment",
+        question = "Leveraging nuclear power is a good way for the US to reduce emissions",
+        qId = topic NuclearPowerToReduceEmissions
       }
-  getQuestionInfo CarbonTax =
-    Info
+  getQuestion CarbonTax =
+    Question
       { header = "The Carbon Tax",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Enviroment",
+        question = "Companies should be have to pay more taxes if they have higher carbon emissions",
+        qId = topic CarbonTax
       }
-  getQuestionInfo ParisAgreement =
-    Info
+  getQuestion ParisAgreement =
+    Question
       { header = "The Paris Climate Agreement",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Enviroment",
+        question = "The US should rejoin the Paris Climate Agreement",
+        qId = topic ParisAgreement
       }
-  getQuestionInfo BanFracking =
-    Info
+  getQuestion BanFracking =
+    Question
       { header = "Fracking",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Enviroment",
+        question = "Fracking should be banned in the US",
+        qId = topic BanFracking
       }
-  getQuestionInfo BanOffshoreDrilling =
-    Info
+  getQuestion BanOffshoreDrilling =
+    Question
       { header = "Offshore Drilling",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Enviroment",
+        question = "Offshore drilling should be banned",
+        qId = topic BanOffshoreDrilling
       }
-  getQuestionInfo DeclareClimateChangeANationalEmergency =
-    Info
+  getQuestion DeclareClimateChangeANationalEmergency =
+    Question
       { header = "Declaring Climate Change as a National Emergency",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Enviroment",
+        question = "Climate change should be declared a national emergency",
+        qId = topic DeclareClimateChangeANationalEmergency
       }
-
-  getTopic = const "Enviroment"
 
 instance Injectable Enviroment where
   inject = topic
@@ -257,38 +271,42 @@ data Guns
   deriving (Show, Read, Eq, Ord, Bounded, Enum, Generic)
 
 instance IsTopic Guns where
-
-  getQuestion UniversalBackgroundChecks = "The law should require anyone trying to buy a gun to have a background check done of them"
-  getQuestion BanAssaultWeapons = "Assault weapons should be banned"
-  getQuestion GunBuyBack = "The government should implement a gun buy-back program"
-  getQuestion RequireGunLicense = "All guns should require a license to own"
-
-  getQuestionInfo UniversalBackgroundChecks =
-    Info
+  getQuestion UniversalBackgroundChecks =
+    Question
       { header = "Universal Background Checks",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Guns",
+        question = "The law should require anyone trying to buy a gun to have a background check done of them",
+        qId = topic UniversalBackgroundChecks
       }
-  getQuestionInfo BanAssaultWeapons =
-    Info
+  getQuestion BanAssaultWeapons =
+    Question
       { header = "Assault Weapons",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Guns",
+        question = "Assault weapons should be banned",
+        qId = topic BanAssaultWeapons
       }
-  getQuestionInfo GunBuyBack =
-    Info
+  getQuestion GunBuyBack =
+    Question
       { header = "Gun Buy Back",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Guns",
+        question = "The government should implement a gun buy-back program",
+        qId = topic GunBuyBack
       }
-  getQuestionInfo RequireGunLicense =
-    Info
+  getQuestion RequireGunLicense =
+    Question
       { header = "Gun Licenses",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Guns",
+        question = "All guns should require a license to own",
+        qId = topic RequireGunLicense
       }
-
-  getTopic = const "Guns"
 
 instance Injectable Guns where
   inject = topic
@@ -305,38 +323,42 @@ data Healthcare
   deriving (Show, Read, Eq, Ord, Bounded, Enum, Generic)
 
 instance IsTopic Healthcare where
-
-  getQuestion SinglePayerSystem = "The US should have a single-payer healthcare system" -- Single-Payer Bill (H.R. 676)
-  getQuestion PublicHealthInsurance = "The US should have a public health insurance option for those who want it"
-  getQuestion EliminatePrivateHealthInsurance = "Private health insurance should be eliminated"
-  getQuestion ImportPrescriptionDrugsFromCanada = "The US should import some prescription drugs from Canada"
-
-  getQuestionInfo SinglePayerSystem =
-    Info
+  getQuestion SinglePayerSystem =
+    Question
       { header = "Single Payer Healthcare",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Healthcare",
+        question = "The US should have a single-payer healthcare system",
+        qId = topic SinglePayerSystem
       }
-  getQuestionInfo PublicHealthInsurance =
-    Info
+  getQuestion PublicHealthInsurance =
+    Question
       { header = "Public Health Insurance",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Healthcare",
+        question = "The US should have a public health insurance option for those who want it",
+        qId = topic PublicHealthInsurance
       }
-  getQuestionInfo EliminatePrivateHealthInsurance =
-    Info
+  getQuestion EliminatePrivateHealthInsurance =
+    Question
       { header = "Private Health Insurance",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Healthcare",
+        question = "Private health insurance should be eliminated",
+        qId = topic EliminatePrivateHealthInsurance
       }
-  getQuestionInfo ImportPrescriptionDrugsFromCanada =
-    Info
+  getQuestion ImportPrescriptionDrugsFromCanada =
+    Question
       { header = "Importing Prescription Drugs from Canada",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Healthcare",
+        question = "The US should import some prescription drugs from Canada",
+        qId = topic ImportPrescriptionDrugsFromCanada
       }
-
-  getTopic = const "Healthcare"
 
 instance Injectable Healthcare where
   inject = topic
@@ -357,66 +379,78 @@ data Immigration
   deriving (Show, Read, Eq, Ord, Bounded, Enum, Generic)
 
 instance IsTopic Immigration where
-
-  getQuestion TrumpBorderWall = "The border wall is a good idea"
-  getQuestion TrumpTravelBan = "Trump's travel ban was a good idea"
-  getQuestion SupportDACA = "The US should support DACA"
-  getQuestion AllowMoreVisaWorkers = "The US should allow more visa workers in"
-  getQuestion DemilitarizeMexicoUSBorder = "The Mexico-US border should be demilitarized"
-  getQuestion InvestInPortsOfEntry = "The US should invest in ports of entry"
-  getQuestion AbolishICE = "ICE should be abolished"
-  getQuestion DecriminalizeIllegalImmigration = "Illegal immigration shouldn't be a crime"
-
-  getQuestionInfo TrumpBorderWall =
-    Info
+  getQuestion TrumpBorderWall =
+    Question
       { header = "The Border Wall",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Immigration",
+        question = "The border wall is a good idea",
+        qId = topic TrumpBorderWall
       }
-  getQuestionInfo TrumpTravelBan =
-    Info
+  getQuestion TrumpTravelBan =
+    Question
       { header = "Trump's Travel Ban",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Immigration",
+        question = "Trump's travel ban was a good idea",
+        qId = topic TrumpTravelBan
       }
-  getQuestionInfo SupportDACA =
-    Info
+  getQuestion SupportDACA =
+    Question
       { header = "DACA",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Immigration",
+        question = "The US should support DACA",
+        qId = topic SupportDACA
       }
-  getQuestionInfo AllowMoreVisaWorkers =
-    Info
+  getQuestion AllowMoreVisaWorkers =
+    Question
       { header = "Visa Workers",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Immigration",
+        question = "The US should allow more visa workers in",
+        qId = topic AllowMoreVisaWorkers
       }
-  getQuestionInfo DemilitarizeMexicoUSBorder =
-    Info
+  getQuestion DemilitarizeMexicoUSBorder =
+    Question
       { header = "Demilitarizing the Mexico-US Border",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Immigration",
+        question = "The Mexico-US border should be demilitarized",
+        qId = topic DemilitarizeMexicoUSBorder
       }
-  getQuestionInfo InvestInPortsOfEntry =
-    Info
+  getQuestion InvestInPortsOfEntry =
+    Question
       { header = "Ports of Entry",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Immigration",
+        question = "The US should invest in ports of entry",
+        qId = topic InvestInPortsOfEntry
       }
-  getQuestionInfo AbolishICE =
-    Info
+  getQuestion AbolishICE =
+    Question
       { header = "ICE",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Immigration",
+        question = "ICE should be abolished",
+        qId = topic AbolishICE
       }
-  getQuestionInfo DecriminalizeIllegalImmigration =
-    Info
+  getQuestion DecriminalizeIllegalImmigration =
+    Question
       { header = "Illegal Immigration",
         info = "",
-        source = ""
+        source = "",
+        questionTopic = "Immigration",
+        question = "Illegal immigration shouldn't be a crime",
+        qId = topic DecriminalizeIllegalImmigration
       }
-
-  getTopic = const "Immigration"
 
 instance Injectable Immigration where
   inject = topic
@@ -458,3 +492,8 @@ percentageMatch p1 p2 = if highest == 0 then 0 else abs (result' - highest) / hi
     highest = 1.5 * (fromIntegral l)
     result = comparePositions' p1' p2
     result' = if result > highest then highest else result
+
+questions :: [Question]
+questions = getQuestion <$> topics
+  where
+    topics = getTopics @'[Education, Enviroment, Guns, Healthcare, Immigration]
