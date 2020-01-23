@@ -2,7 +2,6 @@
 
 * Change question info to be actual information
 
-* Change result percentages from integers to single decimal place
 
 * Create a way to generate an easily shareable image of the user's results
 
@@ -11,5 +10,7 @@
 * Replace candidate photos
 
 ### Completed todo items
+
+* <del> Change result percentages from integers to single decimal place
 
 * <del>Implement question info functionality
