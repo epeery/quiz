@@ -2,6 +2,7 @@
 
 * Change question info to be actual information
 
+* Add a simple tutorial
 
 * Create a way to generate an easily shareable image of the user's results
 
