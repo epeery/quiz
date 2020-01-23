@@ -127,7 +127,7 @@ function Questions({data, onBack, onResults}) {
         closeWithMask={false}
         onRequestClose={() => setOpen(false)} />
 
-      <div className='progress-bar' style={{transform: 'translateX(' + -(100 - (100 * (questionNumber / 30))) + '%)'}}></div>
+      <div className='progress-bar' style={{transform: 'translateX(' + -(100 - (100 * (questionNumber / current.context.data.length))) + '%)'}}></div>
 
       <div className='Questions'>
         <nav>
