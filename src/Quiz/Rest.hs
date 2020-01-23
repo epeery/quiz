@@ -9,6 +9,7 @@ import Polysemy
 import Polysemy.Error
 import Quiz
 import Quiz.Candidates
+import Quiz.Topics (Question)
 import Servant
 
 type API =
