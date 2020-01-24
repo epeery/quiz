@@ -9,13 +9,15 @@
 {-# LANGUAGE UndecidableInstances #-}
 
 module Quiz.Topics
-  ( Education (..),
+  ( Economics (..),
+    Education (..),
     Enviroment (..),
     Guns (..),
     Healthcare (..),
     Immigration (..),
-    Question,
     Positions,
+    Question,
+    Technology (..),
     Topics,
     comparePositions,
     getQuestion,
@@ -33,7 +35,14 @@ import qualified Data.Map.Strict as M
 import Data.Text (Text)
 import GHC.Generics
 
-type Topics = Education + Enviroment + Guns + Healthcare + Immigration
+type Topics =
+  Education
+    + Enviroment
+    + Guns
+    + Healthcare
+    + Immigration
+    + Technology
+    + Economics
 
 data a + b = InL a | InR b
   deriving (Show, Eq, Ord, Generic)
@@ -399,7 +408,7 @@ instance IsTopic Immigration where
       }
   getQuestion SupportDACA =
     Question
-      { header = "DACA",
+      { header = "Deferred Action for Childhood Arrivals",
         info = "",
         source = "",
         questionTopic = "Immigration",
@@ -435,7 +444,7 @@ instance IsTopic Immigration where
       }
   getQuestion AbolishICE =
     Question
-      { header = "ICE",
+      { header = "Immigration and Customs Enforcement",
         info = "",
         source = "",
         questionTopic = "Immigration",
@@ -458,6 +467,120 @@ instance Injectable Immigration where
 instance ToJSON Immigration
 
 instance FromJSON Immigration
+
+data Technology
+  = ReinstateNetNeutrality
+  | DataAsPersonalProperty
+  | CASEAct
+  deriving (Show, Read, Eq, Ord, Bounded, Enum, Generic)
+
+instance IsTopic Technology where
+  getQuestion ReinstateNetNeutrality =
+    Question
+      { header = "Net Neutrality",
+        info = "",
+        source = "",
+        questionTopic = "Technology",
+        question = "Net neutrality should be reinstated",
+        qId = topic ReinstateNetNeutrality
+      }
+  getQuestion DataAsPersonalProperty =
+    Question
+      { header = "Data as Property",
+        info = "",
+        source = "",
+        questionTopic = "Technology",
+        question = "Private data should be treated the same as personal property",
+        qId = topic DataAsPersonalProperty
+      }
+  getQuestion CASEAct =
+    Question
+      { header = "The CASE Act",
+        info = "",
+        source = "",
+        questionTopic = "Technology",
+        question = "I am in favor of the CASE Act",
+        qId = topic CASEAct
+      }
+
+instance Injectable Technology where
+  inject = topic
+
+instance ToJSON Technology
+
+instance FromJSON Technology
+
+data Economics
+  = EstateTax
+  | PostalBanking
+  | ReparationsForSlavery
+  | WealthTax
+  | BreakingUpLargestBanks
+  | SupportNAFTA
+  deriving (Show, Read, Eq, Ord, Bounded, Enum, Generic)
+
+instance IsTopic Economics where
+  getQuestion EstateTax =
+    Question
+      { header = "Estate Tax",
+        info = "",
+        source = "",
+        questionTopic = "Economics",
+        question = "I am in favor of a national estate tax",
+        qId = topic EstateTax
+      }
+  getQuestion PostalBanking =
+    Question
+      { header = "Postal Banking",
+        info = "",
+        source = "",
+        questionTopic = "Economics",
+        question = "I am in favor of postal banking",
+        qId = topic PostalBanking
+      }
+  getQuestion ReparationsForSlavery =
+    Question
+      { header = "Reparations for Slavery",
+        info = "",
+        source = "",
+        questionTopic = "Economics",
+        question = "American descendants of slaves should receive reparations for slavery",
+        qId = topic ReparationsForSlavery
+      }
+  getQuestion WealthTax =
+    Question
+      { header = "Wealth Tax",
+        info = "",
+        source = "",
+        questionTopic = "Economics",
+        question = "The US should implement a wealth tax",
+        qId = topic WealthTax
+      }
+  getQuestion BreakingUpLargestBanks =
+    Question
+      { header = "Breaking Up the Largest Banks",
+        info = "",
+        source = "",
+        questionTopic = "Economics",
+        question = "The government should break up the largest banks",
+        qId = topic BreakingUpLargestBanks
+      }
+  getQuestion SupportNAFTA =
+    Question
+      { header = "The North American Free Trade Agreement",
+        info = "",
+        source = "",
+        questionTopic = "Economics",
+        question = "I support NAFTA",
+        qId = topic SupportNAFTA
+      }
+
+instance Injectable Economics where
+  inject = topic
+
+instance ToJSON Economics
+
+instance FromJSON Economics
 
 type Positions = Map Topics Double
 
@@ -496,4 +619,4 @@ percentageMatch p1 p2 = if highest == 0 then 0 else abs (result' - highest) / hi
 questions :: [Question]
 questions = getQuestion <$> topics
   where
-    topics = getTopics @'[Education, Enviroment, Guns, Healthcare, Immigration]
+    topics = getTopics @'[Education, Enviroment, Guns, Healthcare, Immigration, Technology, Economics]
