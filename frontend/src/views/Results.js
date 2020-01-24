@@ -27,7 +27,7 @@ function Fetch({answers}) {
         </>
       );
     case 'success':
-      const candidates = current.context.data.sort(([_, a]) => (a + 1))
+      const candidates = current.context.data.sort((a, b) => a < b ? 1 : -1)
 
       // const calcPercent = a => Math.round(a * 100)
       const calcPercent = num => Math.round(((num * 100) + 0.00001) * 10) / 10
