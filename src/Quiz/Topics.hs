@@ -129,9 +129,9 @@ instance IsTopic Education where
       }
   getQuestion DebtReliefForStudentLoans =
     Question
-      { header = "Debt Relief For Student Loans",
-        info = "",
-        source = "",
+      { header = "Student Loan Debt",
+        info = "Education debt in the U.S. has eclipsed credit card and auto debt. Today the average college graduate leaves school $30,000 in the red, up from $10,000 in the 1990s, and nearly 1 in 3 student loan borrowers are in delinquency or default. Research has shown that the debt makes it harder for people to buy houses and cars, start businesses and families, save or invest.",
+        source = "https://www.cnbc.com/2019/09/21/what-the-2020-candidates-are-proposing-to-do-about-student-debt.html",
         questionTopic = "Education",
         question = "The government should offer debt relief for student loans",
         qId = topic DebtReliefForStudentLoans
@@ -139,8 +139,8 @@ instance IsTopic Education where
   getQuestion AffirmativeAction =
     Question
       { header = "Affirmative Action",
-        info = "",
-        source = "",
+        info = "Affirmative action means positive steps taken to increase the representation of women and minorities in areas of employment, education, and culture from which they have been historically excluded. When those steps involve preferential selection—selection on the basis of race, gender, or ethnicity—affirmative action generates intense controversy.",
+        source = "https://plato.stanford.edu/entries/affirmative-action/",
         questionTopic = "Education",
         question = "Affirmative action is a fundamentally good idea",
         qId = topic AffirmativeAction
@@ -148,8 +148,8 @@ instance IsTopic Education where
   getQuestion UniversalChildCare =
     Question
       { header = "Universal Child Care",
-        info = "",
-        source = "",
+        info = "Ms. Warren’s plan, the Universal Child Care and Early Learning Act, would create a network of government-funded care centers based partly on the existing Head Start network, with employees paid comparably to public-school teachers. Families earning less than 200 percent of the federal poverty level would be able to send their children to these centers for free. Families earning more than that would be charged on a sliding scale, up to a maximum of 7 percent of their income.",
+        source = "https://www.nytimes.com/2019/02/19/us/politics/elizabeth-warren-child-care.html",
         questionTopic = "Education",
         question = "I am in favor of universal child care",
         qId = topic UniversalChildCare
@@ -157,17 +157,17 @@ instance IsTopic Education where
   getQuestion UniversalPreKindergarten =
     Question
       { header = "Universal Pre-Kindergarten",
-        info = "",
-        source = "",
+        info = "Universal Pre-K is a movement within the American education system to make access to preschool education available to all families, similar to the way kindergarten is available to all 5- and 6-year-olds. Like kindergarten, the pre-K idea is to provide voluntary education programs that include homeschooling and alternative education.",
+        source = "https://www.rasmussen.edu/degrees/education/blog/universal-pre-k-what-is-it-why-affect-me/",
         questionTopic = "Education",
         question = "I am in favor of universal pre-kindergarten",
         qId = topic UniversalPreKindergarten
       }
   getQuestion IncreaseFundingForPublicEducation =
     Question
-      { header = "Increasing Funding For Public Education",
-        info = "",
-        source = "",
+      { header = "Public Education",
+        info = "State schools, called public schools in North America and many other countries, are generally primary or secondary schools mandated for or offered to all children without charge, funded in whole or in part by taxation.",
+        source = "https://en.wikipedia.org/wiki/State_school",
         questionTopic = "Education",
         question = "The government should increase funding for primary and secondary public education",
         qId = topic IncreaseFundingForPublicEducation
@@ -195,10 +195,10 @@ instance IsTopic Enviroment where
   getQuestion GreenNewDeal =
     Question
       { header = "The Green New Deal",
-        info = "",
-        source = "",
+        info = "The Green New Deal is a 10-year plan to mobilize every aspect of American society to 100% clean and renewable energy by 2030, a guaranteed living-wage job for anyone who needs one, and a just transition for both workers and frontline communities.",
+        source = "https://www.sunrisemovement.org/green-new-deal",
         questionTopic = "Enviroment",
-        question = "The Green New Deal is a good idea",
+        question = "The Green New Deal is a great idea",
         qId = topic GreenNewDeal
       }
   getQuestion NoFossilFuelMoneyPledge =
@@ -213,26 +213,26 @@ instance IsTopic Enviroment where
   getQuestion NuclearPowerToReduceEmissions =
     Question
       { header = "Nuclear Power To Reduce Emissions",
-        info = "",
-        source = "",
+        info = "Nuclear power is a clean and efficient way of boiling water to make steam, which turns turbines to produce electricity. Nuclear power plants use low-enriched uranium fuel to produce electricity through a process called fission—the splitting of uranium atoms in a nuclear reactor. Uranium fuel consists of small, hard ceramic pellets that are packaged into long, vertical tubes. Bundles of this fuel are inserted into the reactor.",
+        source = "https://nuclear.gepower.com/company-info/nuclear-power-basics",
         questionTopic = "Enviroment",
         question = "Leveraging nuclear power is a good way for the US to reduce emissions",
         qId = topic NuclearPowerToReduceEmissions
       }
   getQuestion CarbonTax =
     Question
-      { header = "The Carbon Tax",
-        info = "",
-        source = "",
+      { header = "Carbon Tax",
+        info = "A carbon tax is a fee that a government imposes on any company that burns fossil fuels. The most widely-discussed are coal, oil, gasoline, and natural gas. When these carbon-rich fuels are burned they produce greenhouse gases. These gases, such as carbon dioxide and methane, create global warming by heating the atmosphere. The resultant climate disruption causes extreme weather such as heat waves, flooding, blizzards, and droughts.",
+        source = "https://www.thebalance.com/carbon-tax-definition-how-it-works-4158043",
         questionTopic = "Enviroment",
-        question = "Companies should be have to pay more taxes if they have higher carbon emissions",
+        question = "Any company that burns fossil fuels should have to pay a carbon tax",
         qId = topic CarbonTax
       }
   getQuestion ParisAgreement =
     Question
       { header = "The Paris Climate Agreement",
-        info = "",
-        source = "",
+        info = "The Paris Agreement’s central aim is to strengthen the global response to the threat of climate change by keeping a global temperature rise this century well below 2 degrees Celsius above pre-industrial levels and to pursue efforts to limit the temperature increase even further to 1.5 degrees Celsius. Additionally, the agreement aims to increase the ability of countries to deal with the impacts of climate change, and at making finance flows consistent with a low GHG emissions and climate-resilient pathway. To reach these ambitious goals, appropriate mobilization and provision of financial resources, a new technology framework and enhanced capacity-building is to be put in place, thus supporting action by developing countries and the most vulnerable countries, in line with their own national objectives.",
+        source = "https://unfccc.int/process-and-meetings/the-paris-agreement/what-is-the-paris-agreement",
         questionTopic = "Enviroment",
         question = "The US should rejoin the Paris Climate Agreement",
         qId = topic ParisAgreement
@@ -240,26 +240,26 @@ instance IsTopic Enviroment where
   getQuestion BanFracking =
     Question
       { header = "Fracking",
-        info = "",
-        source = "",
+        info = "Fracking is the process of drilling down into the earth before a high-pressure water mixture is directed at the rock to release the gas inside. Water, sand and chemicals are injected into the rock at high pressure which allows the gas to flow out to the head of the well. The process can be carried out vertically or, more commonly, by drilling horizontally to the rock layer, which can create new pathways to release gas or used to extend existing channels.",
+        source = "https://www.bbc.com/news/uk-14432401",
         questionTopic = "Enviroment",
-        question = "Fracking should be banned in the US",
+        question = "Fracking should be banned in the United States",
         qId = topic BanFracking
       }
   getQuestion BanOffshoreDrilling =
     Question
       { header = "Offshore Drilling",
-        info = "",
-        source = "",
+        info = "Offshore drilling is the process of extracting petroleum from reserves located beneath the Earth's oceans instead of reserves located on the mainland. Offshore oil rigs have developed greatly over the past years, and have become gigantic structures that house hundreds of people at a time.",
+        source = "https://energyeducation.ca/encyclopedia/Offshore_drilling",
         questionTopic = "Enviroment",
         question = "Offshore drilling should be banned",
         qId = topic BanOffshoreDrilling
       }
   getQuestion DeclareClimateChangeANationalEmergency =
     Question
-      { header = "Declaring Climate Change as a National Emergency",
-        info = "",
-        source = "",
+      { header = "National Emergencies",
+        info = "In 1976, Congress passed the National Emergencies Act, which permits the president to pronounce a national emergency when he considers it appropriate. The act offers no specific definition of “emergency” and allows a president to declare one entirely at his or her discretion. By declaring a national emergency, the president avails himself or herself of dozens of specialized laws. Some of these powers have funds the president otherwise could not access.",
+        source = "https://www.washingtonpost.com/politics/2019/02/15/what-exactly-is-national-emergency-heres-what-that-means-what-happens-next/",
         questionTopic = "Enviroment",
         question = "Climate change should be declared a national emergency",
         qId = topic DeclareClimateChangeANationalEmergency
@@ -283,8 +283,8 @@ instance IsTopic Guns where
   getQuestion UniversalBackgroundChecks =
     Question
       { header = "Universal Background Checks",
-        info = "",
-        source = "",
+        info = "Proposals for universal background checks would require almost all firearms transactions in the United States to be recorded and go through the National Instant Criminal Background Check System (NICS), closing what is sometimes called the private sale exemption.",
+        source = "https://en.wikipedia.org/wiki/Universal_background_check",
         questionTopic = "Guns",
         question = "The law should require anyone trying to buy a gun to have a background check done of them",
         qId = topic UniversalBackgroundChecks
@@ -292,8 +292,8 @@ instance IsTopic Guns where
   getQuestion BanAssaultWeapons =
     Question
       { header = "Assault Weapons",
-        info = "",
-        source = "",
+        info = "The gun industry’s traditional definition of an “assault rifle” is a weapon the military generally uses and has “select fire capabilities,” or the capability to switch between semi-automatic or a fully automatic mode. However, the civilian AR-15s do not have the select fire capabilities, only semi-automatic settings, so the firearms industry insists they are not an actual assault rifle or assault weapon.",
+        source = "https://www.cnbc.com/2018/02/21/definition-of-whats-an-assault-weapon-is-a-very-contentious-issue.html",
         questionTopic = "Guns",
         question = "Assault weapons should be banned",
         qId = topic BanAssaultWeapons
