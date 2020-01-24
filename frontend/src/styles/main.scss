@@ -335,13 +335,14 @@ h3 {
 
 .info {
   text-align: left;
-  width: 280rem;
+  width: 300rem;
   padding: 0 0 50rem 0;
 
   .header {
     text-align: left;
     margin: 0 0 50rem 0;
     height: auto;
+    min-height: 0;
     width: auto;
     font-size: 22rem;
   }
