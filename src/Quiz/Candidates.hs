@@ -7,7 +7,6 @@ module Quiz.Candidates
     Respondant (..),
     biden,
     bloomberg,
-    booker,
     buttigieg,
     gabbard,
     klobuchar,
@@ -71,7 +70,10 @@ bidenPositions =
       (topic SupportDACA, 1),
       (topic AllowMoreVisaWorkers, 1),
       (topic AbolishICE, -1),
-      (topic DecriminalizeIllegalImmigration, -1)
+      (topic DecriminalizeIllegalImmigration, -1),
+      (topic EstateTax, 1),
+      (topic ReparationsForSlavery, 0.25),
+      (topic SupportNAFTA, 1)
     ]
 
 bloomberg :: Candidate
@@ -96,36 +98,8 @@ bloombergPositions =
       (topic EliminatePrivateHealthInsurance, -1),
       (topic ImportPrescriptionDrugsFromCanada, 0.25),
       (topic TrumpBorderWall, -1),
-      (topic TrumpTravelBan, -1)
-    ]
-
-booker :: Candidate
-booker = Respondant "Cory Booker" bookerPositions "https://www.politico.com/interactives/uploads/2020-elections/headshots/png/300/cory-booker.png"
-
-bookerPositions :: Positions
-bookerPositions =
-  M.fromList
-    [ (topic TuitionFreePublicCollege, -0.5),
-      (topic DebtReliefForStudentLoans, 0.25), -- Only for educators through the Public Service Loan Forgiveness Program
-      (topic AffirmativeAction, 1),
-      (topic GreenNewDeal, 1),
-      (topic NoFossilFuelMoneyPledge, 1),
-      (topic NuclearPowerToReduceEmissions, 1),
-      (topic CarbonTax, 1),
-      (topic ParisAgreement, 1),
-      (topic BanFracking, 1),
-      (topic DeclareClimateChangeANationalEmergency, 1),
-      (topic UniversalBackgroundChecks, 1),
-      (topic BanAssaultWeapons, 1),
-      (topic GunBuyBack, 1), -- Mandatory
-      (topic RequireGunLicense, 1),
-      (topic SinglePayerSystem, 1),
-      (topic EliminatePrivateHealthInsurance, -1),
-      (topic ImportPrescriptionDrugsFromCanada, -1),
-      (topic TrumpBorderWall, -1),
       (topic TrumpTravelBan, -1),
-      (topic SupportDACA, 1),
-      (topic AbolishICE, -1)
+      (topic WealthTax, 1)
     ]
 
 buttigieg :: Candidate
@@ -159,7 +133,12 @@ buttigiegPositions =
       (topic AllowMoreVisaWorkers, 1),
       (topic DemilitarizeMexicoUSBorder, 1),
       (topic AbolishICE, -1),
-      (topic DecriminalizeIllegalImmigration, 1)
+      (topic DecriminalizeIllegalImmigration, 1),
+      (topic ReinstateNetNeutrality, 1),
+      (topic EstateTax, 1),
+      (topic ReparationsForSlavery, 0.25),
+      (topic WealthTax, 1),
+      (topic SupportNAFTA, -1)
     ]
 
 gabbard :: Candidate
@@ -184,7 +163,13 @@ gabbardPositions =
       (topic TrumpBorderWall, -1),
       (topic TrumpTravelBan, -1),
       (topic SupportDACA, 1),
-      (topic AbolishICE, 1)
+      (topic AbolishICE, 1),
+      (topic ReinstateNetNeutrality, 1),
+      (topic CASEAct, 1),
+      (topic EstateTax, 1),
+      (topic ReparationsForSlavery, 1),
+      (topic BreakingUpLargestBanks, 1),
+      (topic SupportNAFTA, -1)
     ]
 
 klobuchar :: Candidate
@@ -214,7 +199,11 @@ klobucharPositions =
       (topic TrumpTravelBan, -1),
       (topic SupportDACA, 1),
       (topic InvestInPortsOfEntry, 1),
-      (topic AbolishICE, -1)
+      (topic AbolishICE, -1),
+      (topic ReinstateNetNeutrality, 1),
+      (topic CASEAct, -1),
+      (topic EstateTax, 1),
+      (topic ReparationsForSlavery, 0.5)
     ]
 
 sanders :: Candidate
@@ -251,7 +240,15 @@ sandersPositions =
       (topic DemilitarizeMexicoUSBorder, 1),
       (topic InvestInPortsOfEntry, 1),
       (topic AbolishICE, 1),
-      (topic DecriminalizeIllegalImmigration, 1)
+      (topic DecriminalizeIllegalImmigration, 1),
+      (topic ReinstateNetNeutrality, 1),
+      (topic CASEAct, -1),
+      (topic EstateTax, 1),
+      (topic PostalBanking, 1),
+      (topic ReparationsForSlavery, 0.5),
+      (topic WealthTax, 1),
+      (topic BreakingUpLargestBanks, 1),
+      (topic SupportNAFTA, -1)
     ]
 
 steyer :: Candidate
@@ -275,7 +272,8 @@ steyerPositions =
       (topic SinglePayerSystem, 1),
       (topic EliminatePrivateHealthInsurance, -1),
       (topic TrumpBorderWall, -1),
-      (topic TrumpTravelBan, -1)
+      (topic TrumpTravelBan, -1),
+      (topic WealthTax, 1)
     ]
 
 warren :: Candidate
@@ -306,7 +304,14 @@ warrenPositions =
       (topic TrumpTravelBan, -1),
       (topic SupportDACA, 1),
       (topic AbolishICE, -1),
-      (topic DecriminalizeIllegalImmigration, 1)
+      (topic DecriminalizeIllegalImmigration, 1),
+      (topic ReinstateNetNeutrality, 1),
+      (topic CASEAct, -1),
+      (topic EstateTax, 1),
+      (topic PostalBanking, 1),
+      (topic ReparationsForSlavery, 1),
+      (topic WealthTax, 1),
+      (topic BreakingUpLargestBanks, 1)
     ]
 
 yang :: Candidate
@@ -343,7 +348,13 @@ yangPositions =
       (topic AllowMoreVisaWorkers, 1),
       (topic InvestInPortsOfEntry, 1),
       (topic AbolishICE, -1),
-      (topic DecriminalizeIllegalImmigration, 0.75) -- Still should work to combat drug and human trafficking but that's it
+      (topic DecriminalizeIllegalImmigration, 0.75), -- Still should work to combat drug and human trafficking but that's it
+      (topic ReinstateNetNeutrality, 1),
+      (topic DataAsPersonalProperty, 1),
+      (topic EstateTax, 1),
+      (topic PostalBanking, 1),
+      (topic ReparationsForSlavery, 0.5),
+      (topic WealthTax, -1)
     ]
 
 -- Ordered in terms of popularity.
@@ -357,7 +368,6 @@ candidates =
     bloomberg,
     yang,
     klobuchar,
-    -- booker, -- Dropped out
     gabbard,
     steyer
   ]
