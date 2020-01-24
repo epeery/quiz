@@ -619,4 +619,5 @@ percentageMatch p1 p2 = if highest == 0 then 0 else abs (result' - highest) / hi
 questions :: [Question]
 questions = getQuestion <$> topics
   where
-    topics = getTopics @'[Education, Enviroment, Guns, Healthcare, Immigration, Technology, Economics]
+    topics = getTopics @'[Education, Enviroment, Guns, Healthcare, Immigration]
+-- topics = getTopics @'[Education, Enviroment, Guns, Healthcare, Immigration, Technology, Economics]
