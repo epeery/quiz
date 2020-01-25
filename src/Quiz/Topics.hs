@@ -286,7 +286,7 @@ instance IsTopic Guns where
         info = "Proposals for universal background checks would require almost all firearms transactions in the United States to be recorded and go through the National Instant Criminal Background Check System (NICS), closing what is sometimes called the private sale exemption.",
         source = "https://en.wikipedia.org/wiki/Universal_background_check",
         questionTopic = "Guns",
-        question = "The law should require anyone trying to buy a gun to have a background check done of them",
+        question = "The law should require anyone trying to buy a gun to have a background check done on them",
         qId = topic UniversalBackgroundChecks
       }
   getQuestion BanAssaultWeapons =
@@ -300,18 +300,18 @@ instance IsTopic Guns where
       }
   getQuestion GunBuyBack =
     Question
-      { header = "Gun Buy Back",
-        info = "",
-        source = "",
+      { header = "Gun Buyback Program",
+        info = "Gun buybacks are events where individuals can turn in firearms to law enforcement, usually with no questions asked, and receive some kind of compensation in return. The overall goal of gun buyback programs is to reduce the number of gun deaths and injuries in a community.",
+        source = "https://www.gunxgun.org/buybacks_faq",
         questionTopic = "Guns",
-        question = "The government should implement a gun buy-back program",
+        question = "The government should implement a gun buyback program",
         qId = topic GunBuyBack
       }
   getQuestion RequireGunLicense =
     Question
-      { header = "Gun Licenses",
-        info = "",
-        source = "",
+      { header = "Gun Licensing Laws",
+        info = "Licensing laws ensure that gun owners have passed a background check before they purchase a gun. In contrast to states which require a background check at the point of sale of a firearm, licensing laws typically require an in-person application at law enforcement agencies, which provides an additional safeguard against fraud or inaccuracies that could allow dangerous individuals to obtain guns.",
+        source = "https://lawcenter.giffords.org/gun-laws/policy-areas/gun-owner-responsibilities/licensing/",
         questionTopic = "Guns",
         question = "All guns should require a license to own",
         qId = topic RequireGunLicense
