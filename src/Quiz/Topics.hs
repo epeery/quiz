@@ -688,4 +688,4 @@ questions :: [Question]
 questions = getQuestion <$> topics
   where
     -- topics = getTopics @'[Education, Enviroment, Guns, Healthcare, Immigration]
-    topics = getTopics @'[Enviroment, Guns, Healthcare, Immigration, Technology, Economics, LaborAndWelfare]
+    topics = getTopics @'[Education, Enviroment, Guns, Healthcare, Immigration, Technology, Economics, LaborAndWelfare]
