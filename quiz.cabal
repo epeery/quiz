@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 03df49385c314fb26e42d1059bca1a345dff6bfb9de1b1328d32416c28e8c82b
+-- hash: fd570fbc6801d6b542b9426d57b5acc0904bcff8f6f1fa0e0e2c052013eadf57
 
 name:                quiz
 version:             0.1.0.0
@@ -22,6 +22,7 @@ library
   exposed-modules:
       Quiz
       Quiz.Candidates
+      Quiz.Effect.Randomize
       Quiz.Rest
       Quiz.Topics
   other-modules:
@@ -39,6 +40,7 @@ library
     , optparse-generic
     , polysemy
     , polysemy-plugin
+    , polysemy-zoo
     , servant
     , servant-server
     , text
@@ -62,6 +64,7 @@ executable quiz-server
     , optparse-generic
     , polysemy
     , polysemy-plugin
+    , polysemy-zoo
     , quiz
     , servant
     , servant-server
