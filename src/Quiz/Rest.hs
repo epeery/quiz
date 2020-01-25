@@ -9,6 +9,7 @@ import Polysemy
 import Polysemy.Error
 import Quiz
 import Quiz.Candidates
+import Quiz.Effect.Randomize
 import Quiz.Topics (Question)
 import Servant
 
@@ -19,5 +20,5 @@ type API =
 api :: Proxy API
 api = Proxy
 
-server :: (Member (Error QuizError) r) => ServerT API (Sem r)
+server :: (Members '[Randomize, Error QuizError] r) => ServerT API (Sem r)
 server = getQuestions :<|> matchUser
