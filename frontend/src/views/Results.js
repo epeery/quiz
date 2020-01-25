@@ -5,7 +5,14 @@ import { fetchMachine } from '../components/fetchMachine.js'
 function Fetch({answers}) {
   const [current, send] = useMachine(fetchMachine, {
     services: {
-      fetchData: (_, e) => fetch(`/api/results/${JSON.stringify(answers)}`).then(res => res.json())
+      fetchData: (_, e) =>
+        fetch('/api/results', {
+          method: 'POST',
+          body: JSON.stringify(answers),
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        }).then(res => res.json())
     }
   });
 
