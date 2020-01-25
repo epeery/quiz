@@ -45,6 +45,7 @@ dependencies:
   - containers
   - polysemy
   - polysemy-plugin
+  - polysemy-zoo
   - servant
   - servant-server
   - aeson
