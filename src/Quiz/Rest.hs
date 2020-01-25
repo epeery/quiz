@@ -5,9 +5,7 @@ module Quiz.Rest
 where
 
 import qualified Data.Map.Strict as M
-import Data.Text (Text)
 import Polysemy
-import Polysemy.Error
 import Quiz
 import Quiz.Candidates
 import Quiz.Effect.Randomize
@@ -21,5 +19,5 @@ type API =
 api :: Proxy API
 api = Proxy
 
-server :: (Members '[Randomize, Error QuizError] r) => ServerT API (Sem r)
+server :: (Member Randomize r) => ServerT API (Sem r)
 server = getQuestions :<|> matchUser
