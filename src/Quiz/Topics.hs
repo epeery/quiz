@@ -59,6 +59,9 @@ instance (ToJSON a, ToJSON b) => ToJSONKey (a + b)
 
 instance (FromJSON a, FromJSON b) => FromJSONKey (a + b)
 
+-- Variant of Data types á la carte
+-- http://www.cs.ru.nl/~W.Swierstra/Publications/DataTypesALaCarte.pdf
+
 class a :<: b where
   inj :: a -> b
 
