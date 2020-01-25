@@ -1,6 +1,6 @@
-{ mkDerivation, aeson, base, containers, hpack, optparse-generic
-, polysemy, polysemy-plugin, servant, servant-server, stdenv, text
-, warp
+{ mkDerivation, aeson, base, bytestring, containers, hpack, mtl
+, optparse-generic, polysemy, polysemy-plugin, servant
+, servant-server, stdenv, text, warp
 }:
 mkDerivation {
   pname = "quiz";
@@ -9,13 +9,13 @@ mkDerivation {
   isLibrary = true;
   isExecutable = true;
   libraryHaskellDepends = [
-    aeson base containers optparse-generic polysemy polysemy-plugin
-    servant servant-server text warp
+    aeson base bytestring containers mtl optparse-generic polysemy
+    polysemy-plugin servant servant-server text warp
   ];
   libraryToolDepends = [ hpack ];
   executableHaskellDepends = [
-    aeson base containers optparse-generic polysemy polysemy-plugin
-    servant servant-server text warp
+    aeson base bytestring containers mtl optparse-generic polysemy
+    polysemy-plugin servant servant-server text warp
   ];
   prePatch = "hpack";
   license = stdenv.lib.licenses.bsd3;
