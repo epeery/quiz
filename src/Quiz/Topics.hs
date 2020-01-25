@@ -216,7 +216,7 @@ instance IsTopic Enviroment where
         info = "Nuclear power is a clean and efficient way of boiling water to make steam, which turns turbines to produce electricity. Nuclear power plants use low-enriched uranium fuel to produce electricity through a process called fission—the splitting of uranium atoms in a nuclear reactor. Uranium fuel consists of small, hard ceramic pellets that are packaged into long, vertical tubes. Bundles of this fuel are inserted into the reactor.",
         source = "https://nuclear.gepower.com/company-info/nuclear-power-basics",
         questionTopic = "Enviroment",
-        question = "Leveraging nuclear power is a good way for the US to reduce emissions",
+        question = "Leveraging nuclear power is a good way for the U.S. to reduce emissions",
         qId = topic NuclearPowerToReduceEmissions
       }
   getQuestion CarbonTax =
@@ -234,7 +234,7 @@ instance IsTopic Enviroment where
         info = "The Paris Agreement’s central aim is to strengthen the global response to the threat of climate change by keeping a global temperature rise this century well below 2 degrees Celsius above pre-industrial levels and to pursue efforts to limit the temperature increase even further to 1.5 degrees Celsius. Additionally, the agreement aims to increase the ability of countries to deal with the impacts of climate change, and at making finance flows consistent with a low GHG emissions and climate-resilient pathway. To reach these ambitious goals, appropriate mobilization and provision of financial resources, a new technology framework and enhanced capacity-building is to be put in place, thus supporting action by developing countries and the most vulnerable countries, in line with their own national objectives.",
         source = "https://unfccc.int/process-and-meetings/the-paris-agreement/what-is-the-paris-agreement",
         questionTopic = "Enviroment",
-        question = "The US should rejoin the Paris Climate Agreement",
+        question = "The U.S. should rejoin the Paris Climate Agreement",
         qId = topic ParisAgreement
       }
   getQuestion BanFracking =
@@ -335,37 +335,37 @@ instance IsTopic Healthcare where
   getQuestion SinglePayerSystem =
     Question
       { header = "Single Payer Healthcare",
-        info = "",
-        source = "",
+        info = "In a single payer healthcare system, rather than multiple competing health insurance companies, a single public or quasi-public agency takes responsibility for financing healthcare for all residents. That is, everyone has health insurance under a one health insurance plan, and has access to necessary services — including doctors, hospitals, long-term care, prescription drugs, dentists and vision care. However, individuals may still choose where they receive care. It’s a lot like Medicare, hence the U.S. single payer nickname “Medicare-for-all.",
+        source = "https://www.health.harvard.edu/blog/single-payer-healthcare-pluses-minuses-means-201606279835",
         questionTopic = "Healthcare",
-        question = "The US should have a single-payer healthcare system",
+        question = "The U.S. should have a single-payer healthcare system",
         qId = topic SinglePayerSystem
       }
   getQuestion PublicHealthInsurance =
     Question
       { header = "Public Health Insurance",
-        info = "",
-        source = "",
+        info = "A program run by U.S. federal, state, or local governments in which people have some or all of their healthcare costs paid for by the government. The two main types of public health insurance are Medicare and Medicaid. Medicare is a federal health insurance program for people aged 65 years or older and people with certain disabilities. Medicaid is a public health insurance program for some individuals and families with a low income or disabilities.",
+        source = "https://www.cancer.gov/publications/dictionaries/cancer-terms/def/public-health-insurance",
         questionTopic = "Healthcare",
-        question = "The US should have a public health insurance option for those who want it",
+        question = "The U.S. should have some form of public health insurance",
         qId = topic PublicHealthInsurance
       }
   getQuestion EliminatePrivateHealthInsurance =
     Question
       { header = "Private Health Insurance",
-        info = "",
-        source = "",
+        info = "Private health insurance refers to health insurance plans marketed by the private health insurance industry, as opposed to government-run insurance programs. Private health insurance currently dominates the U.S. health care landscape, covering more than half of the U.S. population.",
+        source = "https://www.healthinsurance.org/glossary/private-health-insurance/",
         questionTopic = "Healthcare",
         question = "Private health insurance should be eliminated",
         qId = topic EliminatePrivateHealthInsurance
       }
   getQuestion ImportPrescriptionDrugsFromCanada =
     Question
-      { header = "Importing Prescription Drugs from Canada",
-        info = "",
-        source = "",
+      { header = "Prescription Drugs in Canada",
+        info = "Canadian drugs are cheaper because the government regulates the price of generic and brand-name medication. The prices of cheaper generic drugs, which account for most prescriptions, are set through deals with drug companies at the provincial and national levels.",
+        source = "https://www.cbc.ca/news/politics/us-drug-plan-canadian-shortage-1.5232360",
         questionTopic = "Healthcare",
-        question = "The US should import some prescription drugs from Canada",
+        question = "The U.S. should import some prescription drugs from Canada",
         qId = topic ImportPrescriptionDrugsFromCanada
       }
 
@@ -390,9 +390,9 @@ data Immigration
 instance IsTopic Immigration where
   getQuestion TrumpBorderWall =
     Question
-      { header = "The Border Wall",
-        info = "",
-        source = "",
+      { header = "Potential Effectiveness of a Border Wall",
+        info = "Many contemporary examples of border barriers are considered to be effective. Barriers such as the Hungarian border barrier, the Israeli border walls, and the Israeli West Bank barrier have lowered the number of illegal border crossings. In Hungary, for example, the number of illegal immigrants dropped from 4500 per day to 15 after a 175-kilometer long, four-meter high fence was constructed in 2015. On the other hand, research at Texas A&M University and Texas Tech University indicates that the wall, and border walls in general, are unlikely to be effective at reducing illegal immigration or movement of contraband.",
+        source = "https://en.wikipedia.org/wiki/Trump_wall#Effectiveness",
         questionTopic = "Immigration",
         question = "The border wall is a good idea",
         qId = topic TrumpBorderWall
@@ -400,8 +400,8 @@ instance IsTopic Immigration where
   getQuestion TrumpTravelBan =
     Question
       { header = "Trump's Travel Ban",
-        info = "",
-        source = "",
+        info = "The Trump travel ban (sometimes called the \"Muslim ban\") denotes a series of executive actions enacted by Donald Trump as President of the United States in 2017. First, Executive Order 13769 placed stringent restrictions on travel to the United States for citizens of Iran, Iraq, Libya, Somalia, Sudan, Syria, and Yemen. Following protests and legal challenges, a second order, Executive Order 13780, amended some provisions of the first order, and removed Iraq from the list. Finally, Presidential Proclamation 9645 added restrictions on Chad, North Korea, and Venezuela, while Sudan was removed. Six of the eight affected countries are predominantly Muslim.",
+        source = "https://en.wikipedia.org/wiki/Trump_travel_ban",
         questionTopic = "Immigration",
         question = "Trump's travel ban was a good idea",
         qId = topic TrumpTravelBan
@@ -409,44 +409,44 @@ instance IsTopic Immigration where
   getQuestion SupportDACA =
     Question
       { header = "Deferred Action for Childhood Arrivals",
-        info = "",
-        source = "",
+        info = "Deferred Action for Childhood Arrivals (DACA) is a kind of administrative relief from deportation. The purpose of DACA is to protect eligible immigrant youth who came to the United States when they were children from deportation. DACA gives young undocumented immigrants: 1) protection from deportation, and 2) a work permit. The program expires after two years, subject to renewal.",
+        source = "https://undocu.berkeley.edu/legal-support-overview/what-is-daca/",
         questionTopic = "Immigration",
-        question = "The US should support DACA",
+        question = "The U.S. should support DACA",
         qId = topic SupportDACA
       }
   getQuestion AllowMoreVisaWorkers =
     Question
-      { header = "Visa Workers",
-        info = "",
-        source = "",
+      { header = "Work Visas",
+        info = "The U.S.A remains one of the most popular immigration destination countries in the world. Employers can apply to employ skilled migrants under various non-immigrant work visa schemes.",
+        source = "https://workpermit.com/immigration/usa/us-immigration",
         questionTopic = "Immigration",
-        question = "The US should allow more visa workers in",
+        question = "The U.S. should allow more visa workers in",
         qId = topic AllowMoreVisaWorkers
       }
   getQuestion DemilitarizeMexicoUSBorder =
     Question
-      { header = "Demilitarizing the Mexico-US Border",
-        info = "",
-        source = "",
+      { header = "Militarization of the U.S.-Mexico Border",
+        info = "The U.S.-Mexico border stands to become one of the world’s most militarized borders, even though the two countries are not at war. Massive increases in appropriations for border security have served only to decrease real security in the U.S., disrupting the quality of life and economies of border communities and eroding human rights in the region.",
+        source = "https://www.afsc.org/key-issues/issue/us-mexico-border-militarization",
         questionTopic = "Immigration",
-        question = "The Mexico-US border should be demilitarized",
+        question = "The U.S.-Mexico border should be demilitarized",
         qId = topic DemilitarizeMexicoUSBorder
       }
   getQuestion InvestInPortsOfEntry =
     Question
       { header = "Ports of Entry",
-        info = "",
-        source = "",
+        info = "In general, a port of entry (POE) is a place where one may lawfully enter a country. It typically has border security staff and facilities to check passports and visas, and inspect luggage to assure that contraband is not imported.",
+        source = "https://en.wikipedia.org/wiki/Port_of_entry",
         questionTopic = "Immigration",
-        question = "The US should invest in ports of entry",
+        question = "The U.S. should invest in ports of entry",
         qId = topic InvestInPortsOfEntry
       }
   getQuestion AbolishICE =
     Question
-      { header = "Immigration and Customs Enforcement",
-        info = "",
-        source = "",
+      { header = "U.S. Immigration and Customs Enforcement",
+        info = "The U.S. Immigration and Customs Enforcement (ICE) is a federal law enforcement agency under the U.S. Department of Homeland Security, principally responsible for immigration and customs enforcement, with additional responsibilities in countering transnational crime.",
+        source = "https://en.wikipedia.org/wiki/U.S._Immigration_and_Customs_Enforcement",
         questionTopic = "Immigration",
         question = "ICE should be abolished",
         qId = topic AbolishICE
@@ -454,8 +454,8 @@ instance IsTopic Immigration where
   getQuestion DecriminalizeIllegalImmigration =
     Question
       { header = "Illegal Immigration",
-        info = "",
-        source = "",
+        info = "Illegal immigration refers to the migration of people into a country in violation of the immigration laws of that country, or the continued residence of people without the legal right to live in that country. Illegal immigration tends to be financially upward, from poorer to richer countries.",
+        source = "https://en.wikipedia.org/wiki/Illegal_immigration",
         questionTopic = "Immigration",
         question = "Illegal immigration shouldn't be a crime",
         qId = topic DecriminalizeIllegalImmigration
@@ -553,7 +553,7 @@ instance IsTopic Economics where
         info = "",
         source = "",
         questionTopic = "Economics",
-        question = "The US should implement a wealth tax",
+        question = "The U.S. should implement a wealth tax",
         qId = topic WealthTax
       }
   getQuestion BreakingUpLargestBanks =
