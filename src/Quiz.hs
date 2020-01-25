@@ -18,12 +18,13 @@ import qualified Data.Text as T
 import Polysemy
 import Polysemy.Error
 import Quiz.Candidates (Respondant (..), Results, mostSimilarTo)
+import Quiz.Effect.Randomize
 import Quiz.Topics
 
 data QuizError = ResponsesNotValid
 
-getQuestions :: Sem r [Question]
-getQuestions = return $ questions
+getQuestions :: (Member Randomize r) => Sem r [Question]
+getQuestions = randomize questions
 
 matchUser :: (Member (Error QuizError) r) => Text -> Sem r Results
 matchUser o = case decode (BSL.fromStrict . BS.pack $ T.unpack o) of
