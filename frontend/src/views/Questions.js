@@ -206,7 +206,7 @@ function Info({question}) {
     <div className='info'>
       <h2 className='header'>{question.header}</h2>
       <p className='information'>“{question.info}”</p>
-      <a className='source' href={question.source} target='_blank'><div>{question.source}</div></a>
+      <a className='source' href={question.source} target='_blank' rel='noopener noreferrer'><div>{question.source}</div></a>
     </div>
   );
 }
