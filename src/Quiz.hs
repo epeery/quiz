@@ -26,10 +26,13 @@ data QuizError = ResponsesNotValid
 getQuestions :: (Member Randomize r) => Sem r [Question]
 getQuestions = randomize questions
 
-matchUser :: (Member (Error QuizError) r) => Text -> Sem r Results
-matchUser o = case decode (BSL.fromStrict . BS.pack $ T.unpack o) of
-  Just a -> return $ matchUser' a
-  Nothing -> throw ResponsesNotValid
+-- matchUser :: (Member (Error QuizError) r) => Text -> Sem r Results
+-- matchUser o = case decode (BSL.fromStrict . BS.pack $ T.unpack o) of
+--   Just a -> return $ matchUser' a
+--   Nothing -> throw ResponsesNotValid
+
+matchUser :: (Member (Error QuizError) r) => M.Map Topics Double -> Sem r Results
+matchUser o = return $ matchUser' o
 
 matchUser' :: M.Map Topics Double -> Results
 matchUser' = mostSimilarTo . makePerson

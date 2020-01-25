@@ -15,6 +15,7 @@ module Quiz.Topics
     Guns (..),
     Healthcare (..),
     Immigration (..),
+    LaborAndWelfare (..),
     Positions,
     Question,
     Technology (..),
@@ -43,6 +44,7 @@ type Topics =
     + Immigration
     + Technology
     + Economics
+    + LaborAndWelfare
 
 data a + b = InL a | InR b
   deriving (Show, Eq, Ord, Generic)
@@ -582,6 +584,78 @@ instance ToJSON Economics
 
 instance FromJSON Economics
 
+data LaborAndWelfare
+  = RaiseMinimumWage
+  | BasicIncome
+  | PaidFamilyLeave
+  | PaidSickLeave
+  | LimitRightToWorkLaws
+  | JobGuarantee
+  deriving (Show, Read, Eq, Ord, Bounded, Enum, Generic)
+
+instance IsTopic LaborAndWelfare where
+  getQuestion RaiseMinimumWage =
+    Question
+      { header = "Minimum Wage",
+        info = "",
+        source = "",
+        questionTopic = "Labor and Welfare",
+        question = "The national minimum wage should be raised",
+        qId = topic RaiseMinimumWage
+      }
+  getQuestion BasicIncome =
+    Question
+      { header = "Basic Income",
+        info = "",
+        source = "",
+        questionTopic = "Labor and Welfare",
+        question = "U.S. citizens should be guaranteed at least a base level of income",
+        qId = topic BasicIncome
+      }
+  getQuestion PaidFamilyLeave =
+    Question
+      { header = "Paid Sick Leave",
+        info = "",
+        source = "",
+        questionTopic = "Labor and Welfare",
+        question = "Companies should be required to give employees paid family leave",
+        qId = topic PaidFamilyLeave
+      }
+  getQuestion PaidSickLeave =
+    Question
+      { header = "Paid Sick Leave",
+        info = "",
+        source = "",
+        questionTopic = "Labor and Welfare",
+        question = "Companies should be required to give employees paid sick leave",
+        qId = topic PaidSickLeave
+      }
+  getQuestion LimitRightToWorkLaws =
+    Question
+      { header = "Right to Work Laws",
+        info = "",
+        source = "",
+        questionTopic = "Labor and Welfare",
+        question = "Right to work laws should be limited",
+        qId = topic LimitRightToWorkLaws
+      }
+  getQuestion JobGuarantee =
+    Question
+      { header = "Job Guarantee",
+        info = "",
+        source = "",
+        questionTopic = "Labor and Welfare",
+        question = "Anyone who wants to work should be guaranteed a job by the government",
+        qId = topic JobGuarantee
+      }
+
+instance Injectable LaborAndWelfare where
+  inject = topic
+
+instance ToJSON LaborAndWelfare
+
+instance FromJSON LaborAndWelfare
+
 type Positions = Map Topics Double
 
 lookupTopic :: Topics -> Positions -> Double
@@ -600,12 +674,6 @@ comparePositions' p1 p2 = foldr f 0 p1
         then acc
         else (acc +) . abs $ x - (lookupTopic p p2)
 
-pos1 :: Positions
-pos1 = M.fromList [(topic TrumpBorderWall, 1)]
-
-pos2 :: Positions
-pos2 = M.fromList [(topic TrumpBorderWall, -1)]
-
 percentageMatch :: Positions -> Positions -> Double
 percentageMatch p1 p2 = if highest == 0 then 0 else abs (result' - highest) / highest
   where
@@ -619,5 +687,5 @@ percentageMatch p1 p2 = if highest == 0 then 0 else abs (result' - highest) / hi
 questions :: [Question]
 questions = getQuestion <$> topics
   where
-    topics = getTopics @'[Education, Enviroment, Guns, Healthcare, Immigration]
--- topics = getTopics @'[Education, Enviroment, Guns, Healthcare, Immigration, Technology, Economics]
+    -- topics = getTopics @'[Education, Enviroment, Guns, Healthcare, Immigration]
+    topics = getTopics @'[Enviroment, Guns, Healthcare, Immigration, Technology, Economics, LaborAndWelfare]
