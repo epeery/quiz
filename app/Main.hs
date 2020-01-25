@@ -14,7 +14,9 @@ import qualified Network.Wai.Handler.Warp as W
 import Options.Generic
 import Polysemy
 import Polysemy.Error
+import Polysemy.Random
 import Quiz
+import Quiz.Effect.Randomize
 import Quiz.Rest
 import Servant.Server
 
@@ -24,6 +26,8 @@ createApp = return (serve api $ hoistServer api interpretServer server)
     interpretServer sem =
       sem
         & runError @QuizError
+        & runRandomize
+        & runRandomIO
         & runM
         & liftToHandler
     liftToHandler = Handler . ExceptT . (fmap handleErrors)
