@@ -54,4 +54,4 @@ main :: IO ()
 main = do
   Args (port') <- getRecord "Quiz API Server"
   app <- createApp
-  W.run port' . myCors . logStdoutDev $ app
+  W.run port' . myCors $ app
