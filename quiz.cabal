@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: bbcf7993a3ad9e24a220597860d5499511bfaeb02795127e7db3b8c38c3ac494
+-- hash: 967fefdc7148451cae31ffc4954bdf12642d9d0fb8eeb5bab5dfa0af4771917b
 
 name:                quiz
 version:             0.1.0.0
@@ -45,6 +45,7 @@ library
     , servant-server
     , text
     , wai-cors
+    , wai-extra
     , warp
   default-language: Haskell2010
 
@@ -71,5 +72,6 @@ executable quiz-server
     , servant-server
     , text
     , wai-cors
+    , wai-extra
     , warp
   default-language: Haskell2010
