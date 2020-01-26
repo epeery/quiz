@@ -50,6 +50,7 @@ dependencies:
   - servant-server
   - aeson
   - warp
+  - wai
   - wai-cors
   - wai-extra
   - optparse-generic

@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 967fefdc7148451cae31ffc4954bdf12642d9d0fb8eeb5bab5dfa0af4771917b
+-- hash: 8e06ce59f0eddde4c1cb979a8ce74720bea8f9cc8e923402d95356acaccbfee6
 
 name:                quiz
 version:             0.1.0.0
@@ -44,6 +44,7 @@ library
     , servant
     , servant-server
     , text
+    , wai
     , wai-cors
     , wai-extra
     , warp
@@ -71,6 +72,7 @@ executable quiz-server
     , servant
     , servant-server
     , text
+    , wai
     , wai-cors
     , wai-extra
     , warp
