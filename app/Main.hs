@@ -10,8 +10,9 @@ where
 import Control.Monad.Except
 import Data.Function ((&))
 import GHC.Generics
+import Network.Wai
 import qualified Network.Wai.Handler.Warp as W
-import Network.Wai.Middleware.Cors (simpleCors)
+import Network.Wai.Middleware.Cors
 import Network.Wai.Middleware.RequestLogger (logStdoutDev)
 import Options.Generic
 import Polysemy
@@ -40,8 +41,17 @@ data Args = Args {port :: Int} deriving (Generic, Show)
 
 instance ParseRecord Args
 
+myCors :: Middleware
+myCors = cors (const $ Just policy)
+  where
+    policy =
+      simpleCorsResourcePolicy
+        { corsRequestHeaders = ["Content-Type"],
+          corsMethods = "PUT" : simpleMethods
+        }
+
 main :: IO ()
 main = do
   Args (port') <- getRecord "Quiz API Server"
   app <- createApp
-  W.run port' . simpleCors . logStdoutDev $ app
+  W.run port' . myCors . logStdoutDev $ app
