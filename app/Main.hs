@@ -12,6 +12,7 @@ import Data.Function ((&))
 import GHC.Generics
 import qualified Network.Wai.Handler.Warp as W
 import Network.Wai.Middleware.Cors (simpleCors)
+import Network.Wai.Middleware.RequestLogger (logStdoutDev)
 import Options.Generic
 import Polysemy
 import Polysemy.Error
@@ -43,4 +44,4 @@ main :: IO ()
 main = do
   Args (port') <- getRecord "Quiz API Server"
   app <- createApp
-  W.run port' . simpleCors $ app
+  W.run port' . simpleCors . logStdoutDev $ app
