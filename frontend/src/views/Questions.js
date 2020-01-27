@@ -172,8 +172,10 @@ function Questions({data, onBack, onResults}) {
     const buttonClass = num => selected === num ? 'opinion-button selected' : 'opinion-button'
     return (
       <>
-        <h3>Question {number} - {topic}</h3>
-        <h2 className='question'><span onClick={() => send('INFO')}>{children}</span></h2>
+        <div>
+          <h3>Question {number} - {topic}</h3>
+          <h2 className='question'><span onClick={() => send('INFO')}>{children}</span></h2>
+        </div>
         <div className='opinion-container'>
           <button onClick={() => send({type: 'SUBMIT', value: 1})} className={buttonClass(1)} data-color='1'>
             <p>Strongly Agree</p>
