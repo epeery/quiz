@@ -21,8 +21,6 @@
   color: $darkblue;
 
   font-family: 'Poppins', sans-serif;
-
-  box-sizing: border-box;
 }
 
 html {
@@ -175,8 +173,6 @@ h3 {
 }
 
 .opinion-container {
-  display: flex;
-  flex-direction: column;
   margin: 0 auto;
   height: 350rem;
 }
