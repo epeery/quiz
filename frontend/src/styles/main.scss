@@ -52,6 +52,8 @@ body {
 
 .Questions {
   height: 680rem;
+  justify-content: space-between;
+
   h2 {
     width: 345rem;
     min-height: 75rem;
@@ -470,9 +472,5 @@ h3 {
   }
   .App {
     justify-content: flex-start;
-    min-height: 0;
-  }
-  .Questions {
-    height: auto;
   }
 }
