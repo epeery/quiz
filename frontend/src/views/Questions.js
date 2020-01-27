@@ -172,7 +172,7 @@ function Questions({data, onBack, onResults}) {
     const buttonClass = num => selected === num ? 'opinion-button selected' : 'opinion-button'
     return (
       <>
-        <div>
+        <div className='question-header'>
           <h3>Question {number} - {topic}</h3>
           <h2 className='question'><span onClick={() => send('INFO')}>{children}</span></h2>
         </div>
