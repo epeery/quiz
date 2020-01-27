@@ -56,9 +56,14 @@ body {
 
   h2 {
     width: 345rem;
-    min-height: 75rem;
-    margin: 0 0 70rem 0;
+    // min-height: 75rem;
+    // margin: 0 0 70rem 0;
+    margin: 0;
   }
+}
+
+.question-header {
+  height: 340rem;
 }
 
 .Question {
