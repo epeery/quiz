@@ -26,7 +26,6 @@
 
 html {
   font-size: 1px;
-  overflow: hidden;
 }
 
 
@@ -472,5 +471,8 @@ h3 {
   .App {
     justify-content: flex-start;
     min-height: 0;
+  }
+  .Questions {
+    height: auto;
   }
 }
