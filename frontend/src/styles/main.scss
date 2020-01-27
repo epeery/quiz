@@ -174,13 +174,15 @@ h3 {
 
 .opinion-container {
   margin: 0 auto;
-  height: 350rem;
+  min-height: 350rem;
+  display: block;
+  position: relative;
 }
 
 .opinion-button {
   width: 282rem;
   height: 50rem;
-  margin: 10rem;
+  margin: 20rem 0;
   padding: 0;
 
   box-shadow: 4rem 2rem 16rem rgba(136, 165, 191, 0.48), -4rem -2rem 16rem #FFFFFF;
