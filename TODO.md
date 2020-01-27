@@ -1,8 +1,24 @@
 # Todos
 
-* Create a way to generate an easily shareable image of the user's results
+* Add a notice saying that we don't collect data
 
-* Add a way to get user feedback on results
+* Add a logo
+
+* Design explanation mock
+
+* Design infographic social share mockup
+
+* Add the rest of the questions
+
+* Add rest of question help info
+
+* Social media graphic generation
+
+* Let the user choose categories to answer
+
+* Add a way to get user feedback about results
+
+* Fix styling bugs
 
 * Replace candidate photos
 
