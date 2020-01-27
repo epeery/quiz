@@ -28,12 +28,6 @@ html {
   font-size: 1px;
 }
 
-@media (max-width: 450px) {
-  html {
-    font-size: vw(1);
-  }
-}
-
 
 body {
   background: #EBF3FA;
@@ -467,5 +461,14 @@ h3 {
   }
   100% {
     transform: translateX(0);
+  }
+}
+
+@media (max-width: 450px) {
+  html {
+    font-size: vw(1);
+  }
+  .App {
+    justify-content: flex-start;
   }
 }
