@@ -5,7 +5,7 @@
 // Converts pixels into `vw` units
 @function vw($px) {
   // 1920 is the width of the mockup
-  @return $px * (100vw / 450);
+  @return $px * (90vw / 450);
 }
 
 @mixin delay($rule, $number, $value) {
