@@ -33,6 +33,7 @@ body {
   background: linear-gradient(180deg, #EBF3FA 9.85%, #DDE7F3 53.92%, #E6F0F9 100%);
   background-attachment: fixed;
   min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
 }
 
 .App {
@@ -41,6 +42,7 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
 }
 
 .Start, .Questions, .Results, .tutorial {
