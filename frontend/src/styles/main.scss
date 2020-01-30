@@ -126,6 +126,14 @@ h2 {
 
 }
 
+a {
+  color: inherit;
+  &:hover {
+    color: $blue2;
+    text-shadow: 4rem 2rem 32rem rgba($blue1, 0.2), 4rem 4rem 22rem rgba($blue1, 0.5), -4rem -2rem 16rem #FFFFFF;
+  }
+}
+
 h3 {
   margin: 0 0 30rem 0;
 
@@ -137,8 +145,7 @@ h3 {
   /* or 23rem */
   text-align: center;
   letter-spacing: 0.025em;
-
-  opacity: 0.4;
+  color: rgba(black, 0.4)
 }
 
 .icon-container {
