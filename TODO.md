@@ -1,7 +1,5 @@
 # Todos
 
-* Add a notice saying that we don't collect data
-
 * Add a logo
 
 * Design explanation mock
@@ -23,6 +21,8 @@
 * Replace candidate photos
 
 ### Completed todo items
+
+* <del> Add a notice saying that we don't collect data
 
 * <del> Change question info to be actual information
 
