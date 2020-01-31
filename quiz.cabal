@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 8e06ce59f0eddde4c1cb979a8ce74720bea8f9cc8e923402d95356acaccbfee6
+-- hash: a17bd1d44e95865db5601604ca785162d31b389c100ab086dd1a65335951193b
 
 name:                quiz
 version:             0.1.0.0
@@ -34,6 +34,7 @@ library
   build-depends:
       aeson
     , base >=4.12 && <4.13
+    , blaze-html
     , bytestring
     , containers
     , mtl
@@ -61,6 +62,7 @@ executable quiz-server
   build-depends:
       aeson
     , base >=4.12 && <4.13
+    , blaze-html
     , bytestring
     , containers
     , mtl
