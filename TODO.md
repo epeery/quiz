@@ -1,14 +1,14 @@
 # Todos
 
+* Add rest of question help info
+
 * Add a logo
 
-* Design explanation mock
+* Top Unique Areas of Agreement - IE. 'How do I compare to [INSERT CANDIDATE]' 
 
 * Design infographic social share mockup
 
 * Add the rest of the questions
-
-* Add rest of question help info
 
 * Social media graphic generation
 
