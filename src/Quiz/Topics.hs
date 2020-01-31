@@ -482,8 +482,8 @@ instance IsTopic Technology where
   getQuestion ReinstateNetNeutrality =
     Question
       { header = "Net Neutrality",
-        info = "",
-        source = "",
+        info = "Net neutrality is the idea that internet service providers like Comcast and Verizon should treat all content flowing through their cables and cell towers equally. That means they shouldn't be able to slide some data into “fast lanes” while blocking or otherwise discriminating against other material. In other words, these companies shouldn't be able to block you from accessing a service like Skype, or slow down Netflix or Hulu, in order to encourage you to keep your cable package or buy a different video-streaming service.",
+        source = "https://www.wired.com/story/guide-net-neutrality/",
         questionTopic = "Technology",
         question = "Net neutrality should be reinstated",
         qId = topic ReinstateNetNeutrality
@@ -491,17 +491,17 @@ instance IsTopic Technology where
   getQuestion DataAsPersonalProperty =
     Question
       { header = "Data as Property",
-        info = "",
-        source = "",
+        info = "During one of the recent Federal Trade Commission (FTC) workshops on competition policy, economist Dennis Carlton and others suggested that defining who has property rights in data is a key to properly analyzing data issues in antitrust and that a natural place to start would be that the individual owns the data including health care information and maybe search data as well. ",
+        source = "https://www.forbes.com/sites/washingtonbytes/2018/11/02/privacy-is-not-a-property-right-in-personal-information/#67e580dd280f",
         questionTopic = "Technology",
         question = "Private data should be treated the same as personal property",
         qId = topic DataAsPersonalProperty
       }
   getQuestion CASEAct =
     Question
-      { header = "The CASE Act",
-        info = "",
-        source = "",
+      { header = "The Copyright Alternative in Small-Claims Enforcement Act",
+        info = "The Copyright Alternative in Small-Claims Enforcement Act of 2019 (the CASE Act) is a proposed United States law that would provide a new means for copyright owners to file infringement claims; for copyright users to adjudicate declarations of non-infringement; for owners and users to submit claims related to Section 512(f) of the Digital Millennium Copyright Act; and for would-be defendants to submit counterclaims and legal defenses, such as fair use.",
+        source = "https://en.wikipedia.org/wiki/CASE_Act",
         questionTopic = "Technology",
         question = "I am in favor of the CASE Act",
         qId = topic CASEAct
@@ -526,9 +526,9 @@ data Economics
 instance IsTopic Economics where
   getQuestion EstateTax =
     Question
-      { header = "Estate Tax",
-        info = "",
-        source = "",
+      { header = "The Estate Tax",
+        info = "The Estate Tax is a tax on your right to transfer property at your death. It consists of an accounting of everything you own or have certain interests in at the date of death. The fair market value of these items is used, not necessarily what you paid for them or what their values were when you acquired them.",
+        source = "https://www.irs.gov/businesses/small-businesses-self-employed/estate-tax",
         questionTopic = "Economics",
         question = "I am in favor of a national estate tax",
         qId = topic EstateTax
@@ -536,8 +536,8 @@ instance IsTopic Economics where
   getQuestion PostalBanking =
     Question
       { header = "Postal Banking",
-        info = "",
-        source = "",
+        info = "...Requiring U.S. postal offices to offer basic financial services to customers, including checking accounts, interest-bearing savings accounts and short-term loans.",
+        source = "https://twocents.lifehacker.com/what-is-postal-banking-1828194701",
         questionTopic = "Economics",
         question = "I am in favor of postal banking",
         qId = topic PostalBanking
@@ -545,8 +545,8 @@ instance IsTopic Economics where
   getQuestion ReparationsForSlavery =
     Question
       { header = "Reparations for Slavery",
-        info = "",
-        source = "",
+        info = "Reparations for slavery is a political justice concept that argues that reparations should be paid to the descendants of slaves from Sub-Saharan African who were trafficked to and enslaved in the Americas as a consequence of the Atlantic slave trade.",
+        source = "https://en.wikipedia.org/wiki/Reparations_for_slavery",
         questionTopic = "Economics",
         question = "American descendants of slaves should receive reparations for slavery",
         qId = topic ReparationsForSlavery
@@ -554,8 +554,8 @@ instance IsTopic Economics where
   getQuestion WealthTax =
     Question
       { header = "Wealth Tax",
-        info = "",
-        source = "",
+        info = "It's an annual tax on the net wealth a person holds — so, their assets minus their debts. Not just the income they bring in each year. On the one hand, you can think of it as something like the property taxes people pay on their homes, but applied to all their wealth above a certain level. This is, in fact, a major way that Elizabeth Warren sells her wealth tax in her stump speech. But then, on the other hand, it would be a new type of tax for the federal government to levy — property taxes are usually imposed at the local level, and estate taxes, while on wealth, are only imposed at death.",
+        source = "https://www.npr.org/2019/12/05/782135614/how-would-a-wealth-tax-work#what",
         questionTopic = "Economics",
         question = "The U.S. should implement a wealth tax",
         qId = topic WealthTax
@@ -563,8 +563,8 @@ instance IsTopic Economics where
   getQuestion BreakingUpLargestBanks =
     Question
       { header = "Breaking Up the Largest Banks",
-        info = "",
-        source = "",
+        info = "The most basic reason to break up the banks is to increase the stability and security of our financial system. Average American consumers and business owners keep their deposits in commercial banks—but in addition to holding deposits, those banks also have divisions that invest in global markets. That exposes banks (and the deposits they hold) to risks in the broader economy.",
+        source = "https://www.fundera.com/blog/breaking-up-the-big-banks",
         questionTopic = "Economics",
         question = "The government should break up the largest banks",
         qId = topic BreakingUpLargestBanks
@@ -572,10 +572,10 @@ instance IsTopic Economics where
   getQuestion SupportNAFTA =
     Question
       { header = "The North American Free Trade Agreement",
-        info = "",
-        source = "",
+        info = "NAFTA's pros and cons are hotly debated. Critics point to three main disadvantages of NAFTA. First, it sent many U.S. manufacturing jobs to lower-cost Mexico. Second, workers who kept jobs in those industries had to accept lower wages. Third, Mexico's workers suffered exploitation in its maquiladora programs. But NAFTA also has three significant advantages. U.S. grocery prices would be higher without tariff-free imports from Mexico. Imported oil from both Canada and Mexico has prevented higher gas prices. NAFTA has also increased trade and economic growth for all three countries.",
+        source = "https://www.thebalance.com/nafta-definition-north-american-free-trade-agreement-3306147",
         questionTopic = "Economics",
-        question = "I support NAFTA",
+        question = "I am in support of NAFTA",
         qId = topic SupportNAFTA
       }
 
@@ -599,26 +599,26 @@ instance IsTopic LaborAndWelfare where
   getQuestion RaiseMinimumWage =
     Question
       { header = "Minimum Wage",
-        info = "",
-        source = "",
+        info = "The minimum wage in the United States is set by US labor law and a range of state and local laws. Employers generally have to pay workers the highest minimum wage prescribed by federal, state, and local law. Since July 24, 2009, the federal government has mandated a nationwide minimum wage of $7.25 per hour. As of January 2018, there were 29 states with a minimum wage higher than the federal minimum.",
+        source = "https://en.wikipedia.org/wiki/Minimum_wage_in_the_United_States",
         questionTopic = "Labor and Welfare",
-        question = "The national minimum wage should be raised",
+        question = "The federal minimum wage should be raised",
         qId = topic RaiseMinimumWage
       }
   getQuestion BasicIncome =
     Question
-      { header = "Basic Income",
-        info = "",
-        source = "",
+      { header = "Universal Basic Income",
+        info = "Basic income, also called universal basic income (UBI), ...is a governmental public program for a periodic payment delivered to all on an individual basis without means test or work requirement",
+        source = "https://en.wikipedia.org/wiki/Basic_income",
         questionTopic = "Labor and Welfare",
         question = "U.S. citizens should be guaranteed at least a base level of income",
         qId = topic BasicIncome
       }
   getQuestion PaidFamilyLeave =
     Question
-      { header = "Paid Sick Leave",
-        info = "",
-        source = "",
+      { header = "Paid Family Leave",
+        info = "Paid family leave (PFL) refers to partially or fully compensated time away from work for specific and generally significant family caregiving needs, such as the arrival of a new child or serious illness of a close family member. Although the Family and Medical Leave Act of 1993 (FMLA;P.L. 103-3) provides eligible workers with a federal entitlement to unpaid leave for a limited set of family caregiving needs, no federal law requires private-sector employers to provide paid leave of any kind.",
+        source = "https://fas.org/sgp/crs/misc/R44835.pdf",
         questionTopic = "Labor and Welfare",
         question = "Companies should be required to give employees paid family leave",
         qId = topic PaidFamilyLeave
@@ -626,8 +626,8 @@ instance IsTopic LaborAndWelfare where
   getQuestion PaidSickLeave =
     Question
       { header = "Paid Sick Leave",
-        info = "",
-        source = "",
+        info = "Currently, there are no federal legal requirements for paid sick leave. For companies subject to the Family and Medical Leave Act (FMLA), the Act does require unpaid sick leave. FMLA provides for up to 12 weeks of unpaid leave for certain medical situations for either the employee or a member of the employee's immediate family. In many instances paid leave may be substituted for unpaid FMLA leave.",
+        source = "https://www.dol.gov/general/topic/workhours/sickleave",
         questionTopic = "Labor and Welfare",
         question = "Companies should be required to give employees paid sick leave",
         qId = topic PaidSickLeave
@@ -635,8 +635,8 @@ instance IsTopic LaborAndWelfare where
   getQuestion LimitRightToWorkLaws =
     Question
       { header = "Right to Work Laws",
-        info = "",
-        source = "",
+        info = "Right to work laws address situations related to memberships in labor unions -- In short, you never need to join a union or pay union dues to be hired or to work for a company. Commonly, these laws involve employers refusing to hire non-union workers or requiring that workers join a union as a condition of employment. This behavior is illegal because people have the \"right to work\" without being part of a union under state and federal laws.",
+        source = "https://employment.findlaw.com/wages-and-benefits/what-are-right-to-work-laws.html",
         questionTopic = "Labor and Welfare",
         question = "Right to work laws should be limited",
         qId = topic LimitRightToWorkLaws
@@ -644,10 +644,10 @@ instance IsTopic LaborAndWelfare where
   getQuestion JobGuarantee =
     Question
       { header = "Job Guarantee",
-        info = "",
-        source = "",
+        info = "A job guarantee (JG) is an economic policy proposal aimed at providing a sustainable solution to the dual problems of inflation and unemployment. Its aim is to create full employment and price stability, by having the state promise to hire unemployed workers as an employer of last resort (ELR).",
+        source = "https://en.wikipedia.org/wiki/Job_guarantee",
         questionTopic = "Labor and Welfare",
-        question = "Anyone who wants to work should be guaranteed a job by the government",
+        question = "Anyone who wants to work should be guaranteed a job",
         qId = topic JobGuarantee
       }
 
