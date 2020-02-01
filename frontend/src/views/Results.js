@@ -49,34 +49,38 @@ function Fetch({answers}) {
         </>
       ) : (<h1>It's a tie!</h1>);
       return (
-        <div className="candidates">
-          <div className='winner'>
-            {winner}
-          </div>
-          {candidates.map(([candidate, amount], i) => {
-            const percent = calcPercent(amount);
+        <>
+          <div className="candidates">
+            <div className='winner'>
+              {winner}
+            </div>
+            {candidates.map(([candidate, amount], i) => {
+              const percent = calcPercent(amount);
 
-            const color = percent > 70 ? 'blue1' :
-                          percent > 50 ? 'blue2' :
-                          percent > 40 ? 'pink1' :
-                          /*otherwise*/  'pink2'
+              const color = percent > 70 ? 'blue1' :
+                            percent > 50 ? 'blue2' :
+                            percent > 40 ? 'pink1' :
+                            /*otherwise*/  'pink2'
 
-            return (
-              <div className='candidate-container' key={i}>
-                <div className="candidate-pic-container small">
-                  <img className='candidate-pic small' src={candidate.rPic} alt={candidate.rName}/>
-                </div>
-                <div className='candidate-ranking'>
-                  <div className='candidate-ranking-text'>
-                    <h2>{candidate.rName}</h2>
-                    <h2>{percent}%</h2>
+              return (
+                <div className='candidate-container' key={i}>
+                  <div className="candidate-pic-container small">
+                    <img className='candidate-pic small' src={candidate.rPic} alt={candidate.rName}/>
                   </div>
-                  <div className={'candidate-match-bar ' + color} style={{width: percent + '%', animationDelay: i * 0.05 + 's'}}></div>
+                  <div className='candidate-ranking'>
+                    <div className='candidate-ranking-text'>
+                      <h2>{candidate.rName}</h2>
+                      <h2>{percent}%</h2>
+                    </div>
+                    <div className={'candidate-match-bar ' + color} style={{width: percent + '%', animationDelay: i * 0.05 + 's'}}></div>
+                  </div>
                 </div>
-              </div>
-            )
-          })}
-        </div>
+              )
+            })}
+
+          </div>
+          <Picture results={candidates} />
+        </>
       );
     default:
         return (
@@ -88,11 +92,51 @@ function Fetch({answers}) {
   }
 }
 
+function Picture({results}) {
+  const [current, send] = useMachine(fetchMachine, {
+    services: {
+      fetchData: (_, e) =>
+        fetch('/api/image', {
+          method: 'POST',
+          body: JSON.stringify(results),
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        }).then(res => res.blob())
+          .then(res => URL.createObjectURL(res))
+    }
+  });
+
+
+  useEffect(() => {
+    send('FETCH')
+  }, []);
+
+  console.log(current.value)
+
+  switch (current.value) {
+    case 'success':
+        console.log(current.context.data)
+
+        return (
+          <>
+            <img src={current.context.data}/>
+          </>
+        )
+    default:
+        return (
+          <>
+          </>
+        );
+
+  }
+}
+
 function Results({answers}) {
 
   return (
     <div className='Results'>
-      <Fetch answers={answers} onResolve={console.log}/>
+      <Fetch answers={answers} />
     </div>
   )
 }
