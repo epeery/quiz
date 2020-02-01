@@ -97,7 +97,7 @@ function Picture({results}) {
   const [current, send] = useMachine(fetchMachine, {
     services: {
       fetchData: (_, e) =>
-        fetch('/api/image', {
+        fetch(`${process.env.REACT_APP_API_URL}/api/image`, {
           method: 'POST',
           body: JSON.stringify(results),
           headers: {
