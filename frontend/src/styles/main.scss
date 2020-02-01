@@ -469,6 +469,26 @@ h3 {
   }
 }
 
+.results-image {
+  border: 6rem solid $darkblue;
+  max-width: 800px;
+  width: 90vw;
+  position: relative;
+  &.loading {
+    background-color: rgba($darkblue, 0.2);
+    color: white;
+    padding-top: 100%;
+    &::after {
+      content: 'Loading...';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      font-size: 32rem;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
 @keyframes barAnimation {
   0% {
     transform: translateX(-100%);

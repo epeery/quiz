@@ -79,6 +79,7 @@ function Fetch({answers}) {
             })}
 
           </div>
+          <h1>A framed picture of your results</h1>
           <Picture results={candidates} />
         </>
       );
@@ -116,17 +117,15 @@ function Picture({results}) {
 
   switch (current.value) {
     case 'success':
-        console.log(current.context.data)
 
         return (
           <>
-            <img src={current.context.data}/>
+            <img className="results-image" src={current.context.data}/>
           </>
         )
     default:
         return (
-          <>
-          </>
+          <div className="results-image loading"/>
         );
 
   }
