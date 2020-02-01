@@ -2,7 +2,8 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Quiz.Candidates
-  ( Person,
+  ( Candidate,
+    Person,
     Results,
     Respondant (..),
     biden,
@@ -29,7 +30,7 @@ data Respondant r as
   = Respondant
       { rName :: r,
         rAnswers :: as,
-        rPic :: Text
+        rPic :: r
       }
   deriving (Show, Eq, Ord, Generic)
 
