@@ -23,6 +23,10 @@ $ cd quiz
 $ nix-shell
 
 $ cabal install
+
+$ cd results
+
+$ npm install
 ```
 
 ## Useage
