@@ -13,7 +13,7 @@ function Fetch({onResolve, onResults}) {
       notifySuccess: ctx => onResolve(ctx.data)
     },
     services: {
-      fetchData: (_, e) => fetch('/api/questions').then(res => res.json())
+      fetchData: (_, e) => fetch(`${process.env.REACT_APP_API_URL}/api/questions`).then(res => res.json())
     }
   });
 

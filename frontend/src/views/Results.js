@@ -6,7 +6,7 @@ function Fetch({answers}) {
   const [current, send] = useMachine(fetchMachine, {
     services: {
       fetchData: (_, e) =>
-        fetch('/api/results', {
+        fetch(`${process.env.REACT_APP_API_URL}/api/results`, {
           method: 'POST',
           body: JSON.stringify(answers),
           headers: {
