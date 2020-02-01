@@ -26,6 +26,8 @@ $ cabal install
 
 $ cd results
 
+$ bash setup.sh
+
 $ npm install
 ```
 
