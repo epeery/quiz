@@ -1,0 +1,192 @@
+body {
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace
+}
+
+* {
+	color: #31456a;
+	font-family: sans-serif
+}
+
+html {
+	font-size: 1px
+}
+
+@media (max-width:450px) {
+	html {
+		font-size: .22222vw
+	}
+}
+
+body {
+	background: #ebf3fa;
+	/* background: -webkit-gradient(linear, left top, left bottom, color-stop(9.85%, #ebf3fa), color-stop(53.92%, #dde7f3), to(#e6f0f9)); */
+	/* background: linear-gradient(180deg, #ebf3fa 9.85%, #dde7f3 53.92%, #e6f0f9); */
+	/* background-attachment: fixed; */
+	height: 800px;
+	width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.App {
+	justify-content: center;
+	min-height: 100vh
+}
+
+.App,
+.Questions,
+.Results,
+.Start,
+.tutorial {
+	display: flex;
+	flex-direction: column;
+	align-items: center
+}
+
+.Questions {
+	height: 680rem
+}
+
+.Questions h2 {
+	width: 345rem;
+	min-height: 75rem;
+	margin: 0 0 70rem
+}
+
+.Question {
+	display: flex;
+	flex-direction: column;
+	align-items: center
+}
+
+.progress-bar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 8rem;
+	width: 100vw;
+	background: linear-gradient(-66deg, #78e0c9, #69deec 25%, #e9debc 50%, #ffc4eb 75%, #f0a9e5);
+	box-shadow: -1rem 2rem 2rem rgba(24, 55, 91, .1), inset 0 -2rem 1rem rgba(39, 81, 126, .12), inset 0 0 4rem rgba(46, 68, 87, .02);
+	border-radius: 2rem;
+	-webkit-transition: -webkit-transform .4s ease;
+	transition: -webkit-transform .4s ease;
+	transition: transform .4s ease;
+	transition: transform .4s ease, -webkit-transform .4s ease
+}
+
+
+h1 {
+	font-size: 36rem
+}
+
+h2 {
+	padding: 0;
+	font-weight: 600;
+	font-size: 22rem;
+	line-height: 130.5%;
+	text-align: center;
+	letter-spacing: .025em
+}
+
+h3 {
+	margin: 0 0 30rem;
+	font-weight: 500;
+	font-size: 18rem;
+	line-height: 130.5%;
+	text-align: center;
+	letter-spacing: .025em;
+	opacity: .4
+}
+
+.candidate-container {
+	display: flex;
+	align-items: flex-end;
+	width: 390rem;
+	margin: 5rem 0;
+	position: relative
+}
+.candidate-container h2 {
+	margin: 0 0 3rem;
+	padding: 0;
+	text-align: left
+}
+
+.winner {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 80rem 0 0
+}
+
+.winner h1 {
+	margin: 0 0 40rem
+}
+
+.winner h2 {
+	margin: 15rem 0 10rem
+}
+
+.candidate-pic-container {
+	display: flex;
+	align-items: flex-end
+}
+
+.candidate-pic {
+	border-radius: 100%;
+	object-fit: cover;
+	position: relative
+}
+
+.large {
+	width: 110rem;
+	height: 120rem
+}
+
+.small {
+	width: 65rem;
+	height: 70rem
+}
+
+.candidate-ranking {
+	width: 100%;
+	margin: 0 0 0 20rem;
+	overflow: hidden
+}
+
+.candidate-ranking-text {
+	display: flex;
+	width: 100%;
+	justify-content: space-between
+}
+
+.candidate-match-bar {
+	height: 30rem;
+	width: 100%;
+	-webkit-transform-origin: center left;
+	transform-origin: center left;
+	border-radius: 8rem;
+}
+
+.candidate-match-bar.blue1 {
+	background: #78e0c9
+}
+
+.candidate-match-bar.blue2 {
+	background: #69deec
+}
+
+.candidate-match-bar.pink1 {
+	background: #ffc4eb
+}
+
+.candidate-match-bar.pink2 {
+	background: #f0a9e5
+}
