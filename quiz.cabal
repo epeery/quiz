@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 5718480cab00a5fc6a56822c81bd0f0902a28a11e84cd3176ed802bd4f73b625
+-- hash: 192d58c5e5f230270712e0c1ad3fc384eeb8f8ece55d26bf93b2cc7dde3d3173
 
 name:                quiz
 version:             0.1.0.0
@@ -22,8 +22,11 @@ library
   exposed-modules:
       Quiz
       Quiz.Candidates
+      Quiz.Effect.File
       Quiz.Effect.Picture
+      Quiz.Effect.Process
       Quiz.Effect.Randomize
+      Quiz.Effect.UUID
       Quiz.Rest
       Quiz.Results
       Quiz.Topics
@@ -50,6 +53,8 @@ library
     , servant-JuicyPixels
     , servant-server
     , text
+    , turtle
+    , uuid
     , wai
     , wai-cors
     , wai-extra
@@ -82,6 +87,8 @@ executable quiz-server
     , servant-JuicyPixels
     , servant-server
     , text
+    , turtle
+    , uuid
     , wai
     , wai-cors
     , wai-extra

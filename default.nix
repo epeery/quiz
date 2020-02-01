@@ -1,7 +1,8 @@
 { mkDerivation, aeson, base, blaze-html, blaze-markup, bytestring
 , containers, hpack, JuicyPixels, mtl, optparse-generic, polysemy
 , polysemy-plugin, polysemy-zoo, servant, servant-JuicyPixels
-, servant-server, stdenv, text, wai, wai-cors, wai-extra, warp
+, servant-server, stdenv, text, turtle, uuid, wai, wai-cors
+, wai-extra, warp
 }:
 mkDerivation {
   pname = "quiz";
@@ -12,15 +13,15 @@ mkDerivation {
   libraryHaskellDepends = [
     aeson base blaze-html blaze-markup bytestring containers
     JuicyPixels mtl optparse-generic polysemy polysemy-plugin
-    polysemy-zoo servant servant-JuicyPixels servant-server text wai
-    wai-cors wai-extra warp
+    polysemy-zoo servant servant-JuicyPixels servant-server text turtle
+    uuid wai wai-cors wai-extra warp
   ];
   libraryToolDepends = [ hpack ];
   executableHaskellDepends = [
     aeson base blaze-html blaze-markup bytestring containers
     JuicyPixels mtl optparse-generic polysemy polysemy-plugin
-    polysemy-zoo servant servant-JuicyPixels servant-server text wai
-    wai-cors wai-extra warp
+    polysemy-zoo servant servant-JuicyPixels servant-server text turtle
+    uuid wai wai-cors wai-extra warp
   ];
   prePatch = "hpack";
   license = stdenv.lib.licenses.bsd3;
