@@ -19,6 +19,7 @@ import Polysemy
 import Polysemy.Error
 import Polysemy.Random
 import Quiz
+import Quiz.Effect.Picture
 import Quiz.Effect.Randomize
 import Quiz.Rest
 import Servant.Server
@@ -28,13 +29,15 @@ createApp = return (serve api $ hoistServer api interpretServer server)
   where
     interpretServer sem =
       sem
-        & runError @QuizError
         & runRandomize
         & runRandomIO
+        & runPicture
+        & runError @QuizError
         & runM
         & liftToHandler
     liftToHandler = Handler . ExceptT . (fmap handleErrors)
     handleErrors (Left (ResponsesNotValid)) = Left err404 {errBody = "Malformed responses"}
+    handleErrors (Left (PictureNotFound)) = Left err404 {errBody = "Picture not found"}
     handleErrors (Right value) = Right value
 
 data Args = Args {port :: Int} deriving (Generic, Show)
