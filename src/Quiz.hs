@@ -16,7 +16,10 @@ import Quiz.Candidates (Respondant (..), Results, mostSimilarTo)
 import Quiz.Effect.Randomize
 import Quiz.Topics
 
-data QuizError = ResponsesNotValid | PictureNotFound
+data QuizError
+  = ResponsesNotValid
+  | PictureError String
+  | FailedToStartProcess
 
 getQuestions :: (Member Randomize r) => Sem r [Question]
 getQuestions = randomize questions
