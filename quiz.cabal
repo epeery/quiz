@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a17bd1d44e95865db5601604ca785162d31b389c100ab086dd1a65335951193b
+-- hash: 5718480cab00a5fc6a56822c81bd0f0902a28a11e84cd3176ed802bd4f73b625
 
 name:                quiz
 version:             0.1.0.0
@@ -22,8 +22,10 @@ library
   exposed-modules:
       Quiz
       Quiz.Candidates
+      Quiz.Effect.Picture
       Quiz.Effect.Randomize
       Quiz.Rest
+      Quiz.Results
       Quiz.Topics
   other-modules:
       Paths_quiz
@@ -32,9 +34,11 @@ library
   default-extensions: DataKinds FlexibleContexts GADTs LambdaCase PolyKinds RankNTypes ScopedTypeVariables TypeApplications TypeOperators TypeFamilies
   ghc-options: -O2 -flate-specialise -fspecialise-aggressively -fplugin=Polysemy.Plugin -Wall -Wno-unused-binds -Wincomplete-uni-patterns -Wincomplete-record-updates -Wpartial-fields -Wmissing-home-modules -Widentities -Wredundant-constraints -Wcpp-undef -Wmissing-export-lists
   build-depends:
-      aeson
+      JuicyPixels
+    , aeson
     , base >=4.12 && <4.13
     , blaze-html
+    , blaze-markup
     , bytestring
     , containers
     , mtl
@@ -43,6 +47,7 @@ library
     , polysemy-plugin
     , polysemy-zoo
     , servant
+    , servant-JuicyPixels
     , servant-server
     , text
     , wai
@@ -60,9 +65,11 @@ executable quiz-server
   default-extensions: DataKinds FlexibleContexts GADTs LambdaCase PolyKinds RankNTypes ScopedTypeVariables TypeApplications TypeOperators TypeFamilies
   ghc-options: -O2 -flate-specialise -fspecialise-aggressively -fplugin=Polysemy.Plugin -Wall -Wno-unused-binds -Wincomplete-uni-patterns -Wincomplete-record-updates -Wpartial-fields -Wmissing-home-modules -Widentities -Wredundant-constraints -Wcpp-undef -Wmissing-export-lists -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      aeson
+      JuicyPixels
+    , aeson
     , base >=4.12 && <4.13
     , blaze-html
+    , blaze-markup
     , bytestring
     , containers
     , mtl
@@ -72,6 +79,7 @@ executable quiz-server
     , polysemy-zoo
     , quiz
     , servant
+    , servant-JuicyPixels
     , servant-server
     , text
     , wai

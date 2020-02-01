@@ -57,6 +57,9 @@ dependencies:
   - bytestring
   - mtl
   - blaze-html
+  - blaze-markup
+  - servant-JuicyPixels
+  - JuicyPixels
 
 library:
   source-dirs: src
