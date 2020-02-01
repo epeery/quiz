@@ -202,7 +202,7 @@ instance IsTopic Enviroment where
         info = "The Green New Deal is a 10-year plan to mobilize every aspect of American society to 100% clean and renewable energy by 2030, a guaranteed living-wage job for anyone who needs one, and a just transition for both workers and frontline communities.",
         source = "https://www.sunrisemovement.org/green-new-deal",
         questionTopic = "Enviroment",
-        question = "The Green New Deal is a great idea",
+        question = "The Green New Deal is a good idea",
         qId = topic GreenNewDeal
       }
   getQuestion NoFossilFuelMoneyPledge =
