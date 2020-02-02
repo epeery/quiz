@@ -1,10 +1,10 @@
 name:                quiz
 version:             0.1.0.0
 
-license:             GNU GPLv3
 author:              Eli Peery
 maintainer:          eli.g.peery@gmail.com
 copyright:           "2020 Eli Peery"
+license-file:        COPYING
 
 extra-source-files:
 - README.md
