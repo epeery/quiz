@@ -4,13 +4,11 @@
 
 * Add a logo
 
-* Top Unique Areas of Agreement - IE. 'How do I compare to [INSERT CANDIDATE]' 
+* Top Unique Areas of Agreement - IE. 'How do I compare to [INSERT CANDIDATE]'
 
 * Design infographic social share mockup
 
 * Add the rest of the questions
-
-* Social media graphic generation
 
 * Let the user choose categories to answer
 
@@ -21,6 +19,8 @@
 * Replace candidate photos
 
 ### Completed todo items
+
+* <del> Social media graphic generation
 
 * <del> Add a notice saying that we don't collect data
 
