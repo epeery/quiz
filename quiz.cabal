@@ -4,14 +4,14 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: f7a2703ad9948cd0b572fba0f2de090b0b116440e6dc1a8d10bb1c5ca9185cfa
+-- hash: 5a67960926927415240f21af46d592707d76191f5cc47c2e97da750fa6a20b98
 
 name:                quiz
 version:             0.1.0.0
 author:              Eli Peery
 maintainer:          eli.g.peery@gmail.com
 copyright:           2020 Eli Peery
-license:             BSD3
+license:             GNU GPLv3
 build-type:          Simple
 extra-source-files:
     README.md
