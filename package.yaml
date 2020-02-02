@@ -10,6 +10,7 @@ extra-source-files:
 - README.md
 - CHANGELOG.md
 - TODO.md
+- COPYING
 
 ghc-options:
 - -O2

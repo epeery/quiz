@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 192d58c5e5f230270712e0c1ad3fc384eeb8f8ece55d26bf93b2cc7dde3d3173
+-- hash: f7a2703ad9948cd0b572fba0f2de090b0b116440e6dc1a8d10bb1c5ca9185cfa
 
 name:                quiz
 version:             0.1.0.0
@@ -17,6 +17,7 @@ extra-source-files:
     README.md
     CHANGELOG.md
     TODO.md
+    COPYING
 
 library
   exposed-modules:
