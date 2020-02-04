@@ -60,10 +60,12 @@ function Start() {
   switch (current.value) {
     default:
       return (
-        <div className='Start'>
-          <h1>Find your political match</h1>
-          <Fetch onResolve={data => send({type: 'START', data})} />
-        </div>
+        <>
+          <div className='Start'>
+            <h1>Find your political match</h1>
+            <Fetch onResolve={data => send({type: 'START', data})} />
+          </div>
+        </>
       )
     case 'quiz':
       return (

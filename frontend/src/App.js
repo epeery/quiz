@@ -34,6 +34,7 @@ function App() {
         />
 
       <div className="App">
+        <a className="logo" href="https://insight.vote"><h2>insight<span>.</span>vote</h2></a>
         <Start />
       </div>
     </>

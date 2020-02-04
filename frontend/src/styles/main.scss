@@ -51,6 +51,22 @@ body {
   align-items: center;
 }
 
+.logo {
+  position: absolute;
+  top: 30rem;
+  text-decoration: none;
+  &:hover {
+    text-shadow: none;
+  }
+  * {
+    padding: 0;
+    margin: 0;
+  }
+  span {
+    color: $pink2;
+  }
+}
+
 .Questions {
   height: 680rem;
   justify-content: space-between;
