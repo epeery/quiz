@@ -22,7 +22,6 @@ function Fetch({onResolve, onResults}) {
     case 'failure':
       return (
         <>
-          <h1>Political Quiz</h1>
           <h3>Unable to connect to the server</h3>
           <button onClick={() => send('RETRY')} className='opinion-button' data-color='5'>
             <p>Retry</p>
@@ -32,7 +31,6 @@ function Fetch({onResolve, onResults}) {
     case 'loading':
       return (
         <>
-          <h1>Political Quiz</h1>
           <button className='opinion-button' data-color='3'>
             <p>Loading...</p>
           </button>
@@ -41,7 +39,6 @@ function Fetch({onResolve, onResults}) {
     default:
         return (
           <>
-            <h1>Political Quiz</h1>
             <button onClick={() => send('FETCH')} className='opinion-button' data-color='1'>
               <p>Start</p>
             </button>
@@ -64,6 +61,7 @@ function Start() {
     default:
       return (
         <div className='Start'>
+          <h1>Find your political match</h1>
           <Fetch onResolve={data => send({type: 'START', data})} />
         </div>
       )
