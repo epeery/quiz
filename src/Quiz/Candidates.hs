@@ -48,8 +48,8 @@ biden = Respondant "Joe Biden" bidenPositions "https://www.politico.com/interact
 bidenPositions :: Positions
 bidenPositions =
   M.fromList
-    [ (topic TuitionFreePublicCollege, 0.25), -- Two years of free college
-      (topic DebtReliefForStudentLoans, 0.25), -- Only for educators through the Public Service Loan Forgiveness Program
+    [ (topic TuitionFreePublicCollege, 0.5), -- Two years of free college
+      (topic DebtReliefForStudentLoans, 0.5), -- Only for educators through the Public Service Loan Forgiveness Program
       (topic AffirmativeAction, 1),
       (topic UniversalChildCare, 1),
       (topic UniversalPreKindergarten, 1),
@@ -58,7 +58,7 @@ bidenPositions =
       (topic NoFossilFuelMoneyPledge, 1),
       (topic NuclearPowerToReduceEmissions, 1),
       (topic ParisAgreement, 1),
-      (topic BanOffshoreDrilling, 0.25), -- Specificly in the Arctic
+      (topic BanOffshoreDrilling, 0.5), -- Specificly in the Arctic
       (topic UniversalBackgroundChecks, 1),
       (topic BanAssaultWeapons, 1),
       (topic GunBuyBack, 0.5), -- Voluntary
@@ -73,7 +73,7 @@ bidenPositions =
       (topic AbolishICE, -1),
       (topic DecriminalizeIllegalImmigration, -1),
       (topic EstateTax, 1),
-      (topic ReparationsForSlavery, 0.25),
+      (topic ReparationsForSlavery, 0.5),
       (topic SupportNAFTA, 1)
     ]
 
@@ -86,7 +86,7 @@ bloombergPositions =
     [ (topic IncreaseFundingForPublicEducation, 1),
       (topic GreenNewDeal, -1),
       (topic NoFossilFuelMoneyPledge, -1),
-      (topic NuclearPowerToReduceEmissions, 0.25),
+      (topic NuclearPowerToReduceEmissions, 0.5),
       (topic CarbonTax, 1),
       (topic ParisAgreement, 1),
       (topic BanFracking, -1),
@@ -97,7 +97,7 @@ bloombergPositions =
       (topic RequireGunLicense, 1),
       (topic SinglePayerSystem, -1),
       (topic EliminatePrivateHealthInsurance, -1),
-      (topic ImportPrescriptionDrugsFromCanada, 0.25),
+      (topic ImportPrescriptionDrugsFromCanada, 0.5),
       (topic TrumpBorderWall, -1),
       (topic TrumpTravelBan, -1),
       (topic WealthTax, 1)
@@ -137,7 +137,7 @@ buttigiegPositions =
       (topic DecriminalizeIllegalImmigration, 1),
       (topic ReinstateNetNeutrality, 1),
       (topic EstateTax, 1),
-      (topic ReparationsForSlavery, 0.25),
+      (topic ReparationsForSlavery, 0.5),
       (topic WealthTax, 1),
       (topic SupportNAFTA, -1)
     ]
@@ -185,8 +185,8 @@ klobucharPositions =
       (topic GreenNewDeal, 1),
       (topic NoFossilFuelMoneyPledge, 1),
       (topic NuclearPowerToReduceEmissions, 1),
-      (topic CarbonTax, 0.25),
-      (topic ParisAgreement, 0.25),
+      (topic CarbonTax, 0.5),
+      (topic ParisAgreement, 0.5),
       (topic BanFracking, -1),
       (topic DeclareClimateChangeANationalEmergency, 1),
       (topic UniversalBackgroundChecks, 1),
