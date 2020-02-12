@@ -60,7 +60,7 @@ function Questions({data, onBack, onResults}) {
         <div className='tutorial'>
           <h2>You can click the opinion for more information</h2>
 
-          <button onClick={() => goTo(4)} className='opinion-button' data-color='2'>
+          <button onClick={() => {goTo(4); send('INFO')}} className='opinion-button' data-color='2'>
             <p>Next</p>
           </button>
         </div>
@@ -70,9 +70,21 @@ function Questions({data, onBack, onResults}) {
     {
       content: ({goTo}) => (
         <div className='tutorial'>
+          <h2>This info can help inform your opinions</h2>
+
+          <button onClick={() => {goTo(5); send('BACK')}} className='opinion-button' data-color='2'>
+            <p>Next</p>
+          </button>
+        </div>
+      ),
+      selector: '.info',
+    },
+    {
+      content: ({goTo}) => (
+        <div className='tutorial'>
           <h2>If you still aren't sure, you can always skip the question</h2>
 
-          <button onClick={() => goTo(5)} className='opinion-button' data-color='2'>
+          <button onClick={() => goTo(6)} className='opinion-button' data-color='2'>
             <p>Next</p>
           </button>
         </div>
@@ -84,7 +96,7 @@ function Questions({data, onBack, onResults}) {
         <div className='tutorial'>
           <h2>You can also go back if you'd like to change a previous response</h2>
 
-          <button onClick={() => goTo(6)} className='opinion-button' data-color='2'>
+          <button onClick={() => goTo(7)} className='opinion-button' data-color='2'>
             <p>Next</p>
           </button>
         </div>
