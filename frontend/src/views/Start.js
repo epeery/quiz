@@ -1,8 +1,10 @@
 import React from 'react';
 import { assign } from 'xstate';
 import { useMachine } from '@xstate/react';
+
 import { fetchMachine } from '../components/fetchMachine.js'
 import { routingMachine } from '../components/routingMachine.js'
+import Banner from '../components/Banner.js'
 
 import Questions from './Questions.js'
 import Results from './Results.js'
@@ -64,6 +66,13 @@ function Start() {
           <div className='Start'>
             <h1>Find your political match</h1>
             <Fetch onResolve={data => send({type: 'START', data})} />
+
+            <Banner>
+              <h2>We don't collect any data</h2>
+              <h3>We're also open source! <br/>
+                <a href='https://github.com/epeery/quiz' target='_blank' rel='noopener noreferrer'>Contribute here</a>
+              </h3>
+            </Banner>
           </div>
         </>
       )

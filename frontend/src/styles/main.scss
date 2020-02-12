@@ -68,6 +68,20 @@ body {
   }
 }
 
+.banner {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: rgba($blue2, 0.3);
+  h2 {
+    font-size: 20rem;
+    margin: 30rem 0 15rem;
+  }
+  h3 {
+    font-size: 18rem;
+  }
+}
+
 .Questions {
   height: 680rem;
   justify-content: space-between;
