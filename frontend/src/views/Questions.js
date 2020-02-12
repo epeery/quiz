@@ -77,7 +77,7 @@ function Questions({data, onBack, onResults}) {
           </button>
         </div>
       ),
-      selector: '.info',
+      selector: '.information',
     },
     {
       content: ({goTo}) => (
