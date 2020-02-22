@@ -36,4 +36,5 @@ $ npm install
 ```bash
 $ quiz-server --port PORT
 ```
+This must be executed at the root of the project
 
