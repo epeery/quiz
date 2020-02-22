@@ -10,7 +10,7 @@
 module Quiz.Topics
   ( Economics (..),
     Education (..),
-    Enviroment (..),
+    Environment (..),
     Guns (..),
     Healthcare (..),
     Immigration (..),
@@ -39,7 +39,7 @@ import GHC.Generics
 
 type Topics =
   Education
-    + Enviroment
+    + Environment
     + Guns
     + Healthcare
     + Immigration
@@ -82,7 +82,7 @@ instance IsTopicList '[] where
   getTopics = []
 
 -- Example:
--- getTopics @'[Education, Enviroment, Healthcare]
+-- getTopics @'[Education, Environment, Healthcare]
 instance (Injectable a, Bounded a, Enum a, IsTopicList xs) => IsTopicList (a ': xs) where
   getTopics = (inject @a <$> [minBound .. maxBound]) ++ getTopics @xs
 
@@ -147,7 +147,7 @@ questions = getQuestion <$> topics
     topics =
       getTopics
         @'[ Education,
-            Enviroment,
+            Environment,
             Guns,
             Healthcare,
             Immigration,
@@ -162,8 +162,8 @@ parseTopic target s = if s == target then getTopics @'[a] else []
 parseEducation :: String -> [Topics]
 parseEducation = parseTopic @Education "education"
 
-parseEnviroment :: String -> [Topics]
-parseEnviroment = parseTopic @Enviroment "enviroment"
+parseEnvironment :: String -> [Topics]
+parseEnvironment = parseTopic @Environment "environment"
 
 parseGuns :: String -> [Topics]
 parseGuns = parseTopic @Guns "guns"
@@ -188,7 +188,7 @@ parseTopics =
   foldMap
     ( \s ->
         parseEducation s
-          <|> parseEnviroment s
+          <|> parseEnvironment s
           <|> parseGuns s
           <|> parseHealthcare s
           <|> parseImmigration s
@@ -273,7 +273,7 @@ instance ToJSON Education
 
 instance FromJSON Education
 
-data Enviroment
+data Environment
   = GreenNewDeal
   | NoFossilFuelMoneyPledge
   | NuclearPowerToReduceEmissions
@@ -284,13 +284,13 @@ data Enviroment
   | DeclareClimateChangeANationalEmergency
   deriving (Show, Read, Eq, Ord, Bounded, Enum, Generic)
 
-instance IsTopic Enviroment where
+instance IsTopic Environment where
   getQuestion GreenNewDeal =
     Question
       { header = "The Green New Deal",
         info = "The Green New Deal is a 10-year plan to mobilize every aspect of American society to 100% clean and renewable energy by 2030, a guaranteed living-wage job for anyone who needs one, and a just transition for both workers and frontline communities.",
         source = "https://www.sunrisemovement.org/green-new-deal",
-        questionTopic = "Enviroment",
+        questionTopic = "Environment",
         question = "The Green New Deal is a good idea",
         qId = topic GreenNewDeal
       }
@@ -299,7 +299,7 @@ instance IsTopic Enviroment where
       { header = "The No Fossil Fuel Money Pledge",
         info = "I pledge not to take contributions over $200 from oil, gas, and coal industry executives, lobbyists, and PACs and instead prioritize the health of our families, climate, and democracy over fossil fuel industry profits.",
         source = "http://nofossilfuelmoney.org/",
-        questionTopic = "Enviroment",
+        questionTopic = "Environment",
         question = "It is important to me that my candidate has taken the No Fossil Fuel Money Pledge",
         qId = topic NoFossilFuelMoneyPledge
       }
@@ -308,7 +308,7 @@ instance IsTopic Enviroment where
       { header = "Nuclear Power To Reduce Emissions",
         info = "Nuclear power is a clean and efficient way of boiling water to make steam, which turns turbines to produce electricity. Nuclear power plants use low-enriched uranium fuel to produce electricity through a process called fission—the splitting of uranium atoms in a nuclear reactor. Uranium fuel consists of small, hard ceramic pellets that are packaged into long, vertical tubes. Bundles of this fuel are inserted into the reactor.",
         source = "https://nuclear.gepower.com/company-info/nuclear-power-basics",
-        questionTopic = "Enviroment",
+        questionTopic = "Environment",
         question = "Leveraging nuclear power is a good way for the U.S. to reduce emissions",
         qId = topic NuclearPowerToReduceEmissions
       }
@@ -317,7 +317,7 @@ instance IsTopic Enviroment where
       { header = "Carbon Tax",
         info = "A carbon tax is a fee that a government imposes on any company that burns fossil fuels. The most widely-discussed are coal, oil, gasoline, and natural gas. When these carbon-rich fuels are burned they produce greenhouse gases. These gases, such as carbon dioxide and methane, create global warming by heating the atmosphere. The resultant climate disruption causes extreme weather such as heat waves, flooding, blizzards, and droughts.",
         source = "https://www.thebalance.com/carbon-tax-definition-how-it-works-4158043",
-        questionTopic = "Enviroment",
+        questionTopic = "Environment",
         question = "Any company that burns fossil fuels should have to pay a carbon tax",
         qId = topic CarbonTax
       }
@@ -326,7 +326,7 @@ instance IsTopic Enviroment where
       { header = "The Paris Climate Agreement",
         info = "The Paris Agreement’s central aim is to strengthen the global response to the threat of climate change by keeping a global temperature rise this century well below 2 degrees Celsius above pre-industrial levels and to pursue efforts to limit the temperature increase even further to 1.5 degrees Celsius. Additionally, the agreement aims to increase the ability of countries to deal with the impacts of climate change, and at making finance flows consistent with a low GHG emissions and climate-resilient pathway. To reach these ambitious goals, appropriate mobilization and provision of financial resources, a new technology framework and enhanced capacity-building is to be put in place, thus supporting action by developing countries and the most vulnerable countries, in line with their own national objectives.",
         source = "https://unfccc.int/process-and-meetings/the-paris-agreement/what-is-the-paris-agreement",
-        questionTopic = "Enviroment",
+        questionTopic = "Environment",
         question = "The U.S. should rejoin the Paris Climate Agreement",
         qId = topic ParisAgreement
       }
@@ -335,7 +335,7 @@ instance IsTopic Enviroment where
       { header = "Fracking",
         info = "Fracking is the process of drilling down into the earth before a high-pressure water mixture is directed at the rock to release the gas inside. Water, sand and chemicals are injected into the rock at high pressure which allows the gas to flow out to the head of the well. The process can be carried out vertically or, more commonly, by drilling horizontally to the rock layer, which can create new pathways to release gas or used to extend existing channels.",
         source = "https://www.bbc.com/news/uk-14432401",
-        questionTopic = "Enviroment",
+        questionTopic = "Environment",
         question = "Fracking should be banned in the United States",
         qId = topic BanFracking
       }
@@ -344,7 +344,7 @@ instance IsTopic Enviroment where
       { header = "Offshore Drilling",
         info = "Offshore drilling is the process of extracting petroleum from reserves located beneath the Earth's oceans instead of reserves located on the mainland. Offshore oil rigs have developed greatly over the past years, and have become gigantic structures that house hundreds of people at a time.",
         source = "https://energyeducation.ca/encyclopedia/Offshore_drilling",
-        questionTopic = "Enviroment",
+        questionTopic = "Environment",
         question = "Offshore drilling should be banned",
         qId = topic BanOffshoreDrilling
       }
@@ -353,17 +353,17 @@ instance IsTopic Enviroment where
       { header = "National Emergencies",
         info = "In 1976, Congress passed the National Emergencies Act, which permits the president to pronounce a national emergency when he considers it appropriate. The act offers no specific definition of “emergency” and allows a president to declare one entirely at his or her discretion. By declaring a national emergency, the president avails himself or herself of dozens of specialized laws. Some of these powers have funds the president otherwise could not access.",
         source = "https://www.washingtonpost.com/politics/2019/02/15/what-exactly-is-national-emergency-heres-what-that-means-what-happens-next/",
-        questionTopic = "Enviroment",
+        questionTopic = "Environment",
         question = "Climate change should be declared a national emergency",
         qId = topic DeclareClimateChangeANationalEmergency
       }
 
-instance Injectable Enviroment where
+instance Injectable Environment where
   inject = topic
 
-instance ToJSON Enviroment
+instance ToJSON Environment
 
-instance FromJSON Enviroment
+instance FromJSON Environment
 
 data Guns
   = UniversalBackgroundChecks
