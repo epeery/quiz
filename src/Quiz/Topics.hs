@@ -144,7 +144,17 @@ percentageMatch p1 p2 = if highest == 0 then 0 else abs (result' - highest) / hi
 questions :: [Question]
 questions = getQuestion <$> topics
   where
-    topics = getTopics @'[Education, Enviroment, Guns, Healthcare, Immigration, Technology, Economics, LaborAndWelfare]
+    topics =
+      getTopics
+        @'[ Education,
+            Enviroment,
+            Guns,
+            Healthcare,
+            Immigration,
+            Technology,
+            Economics,
+            LaborAndWelfare
+          ]
 
 parseTopic :: forall a. (Injectable a, Bounded a, Enum a) => String -> String -> [Topics]
 parseTopic target s = if s == target then getTopics @'[a] else []
