@@ -22,12 +22,14 @@ module Quiz.Topics
     comparePositions,
     getQuestion,
     inject,
+    parseTopics,
     percentageMatch,
     questions,
     topic,
   )
 where
 
+import Control.Applicative
 import Data.Aeson.Types
 import Data.List (filter)
 import Data.Map.Strict (Map)
@@ -111,6 +113,79 @@ data Question
 instance FromJSON Question
 
 instance ToJSON Question
+
+type Positions = Map Topics Double
+
+lookupTopic :: Topics -> Positions -> Double
+lookupTopic = M.findWithDefault 0
+
+-- Lower number == more similar
+comparePositions :: Positions -> Positions -> Double
+comparePositions p1 = comparePositions' (M.toList p1)
+
+comparePositions' :: [(Topics, Double)] -> Positions -> Double
+comparePositions' p1 p2 = foldr f 0 p1
+  where
+    f (p, x) acc =
+      if x == 0
+        then acc
+        else (acc +) . abs $ x - (lookupTopic p p2)
+
+percentageMatch :: Positions -> Positions -> Double
+percentageMatch p1 p2 = if highest == 0 then 0 else abs (result' - highest) / highest
+  where
+    p1' = filter (\(_, n) -> n /= 0) $ M.toList p1
+    l = length p1'
+    -- Should in reality be 2 * l but 1.5 makes the results more interesting
+    highest = 1.5 * (fromIntegral l)
+    result = comparePositions' p1' p2
+    result' = if result > highest then highest else result
+
+questions :: [Question]
+questions = getQuestion <$> topics
+  where
+    topics = getTopics @'[Education, Enviroment, Guns, Healthcare, Immigration, Technology, Economics, LaborAndWelfare]
+
+parseTopic :: forall a. (Injectable a, Bounded a, Enum a) => String -> String -> [Topics]
+parseTopic target s = if s == target then getTopics @'[a] else []
+
+parseEducation :: String -> [Topics]
+parseEducation = parseTopic @Education "education"
+
+parseEnviroment :: String -> [Topics]
+parseEnviroment = parseTopic @Enviroment "enviroment"
+
+parseGuns :: String -> [Topics]
+parseGuns = parseTopic @Guns "guns"
+
+parseHealthcare :: String -> [Topics]
+parseHealthcare = parseTopic @Healthcare "healthcare"
+
+parseImmigration :: String -> [Topics]
+parseImmigration = parseTopic @Immigration "immigration"
+
+parseTechnology :: String -> [Topics]
+parseTechnology = parseTopic @Technology "technology"
+
+parseEconomics :: String -> [Topics]
+parseEconomics = parseTopic @Economics "economics"
+
+parseLaborAndWelfare :: String -> [Topics]
+parseLaborAndWelfare = parseTopic @LaborAndWelfare "labor and welfare"
+
+parseTopics :: [String] -> [Topics]
+parseTopics =
+  foldMap
+    ( \s ->
+        parseEducation s
+          <|> parseEnviroment s
+          <|> parseGuns s
+          <|> parseHealthcare s
+          <|> parseImmigration s
+          <|> parseTechnology s
+          <|> parseEconomics s
+          <|> parseLaborAndWelfare s
+    )
 
 data Education
   = TuitionFreePublicCollege
@@ -657,37 +732,3 @@ instance Injectable LaborAndWelfare where
 instance ToJSON LaborAndWelfare
 
 instance FromJSON LaborAndWelfare
-
-type Positions = Map Topics Double
-
-lookupTopic :: Topics -> Positions -> Double
-lookupTopic = M.findWithDefault 0
-
--- Temporary way to compare positions
--- Lower number == more similar
-comparePositions :: Positions -> Positions -> Double
-comparePositions p1 = comparePositions' (M.toList p1)
-
-comparePositions' :: [(Topics, Double)] -> Positions -> Double
-comparePositions' p1 p2 = foldr f 0 p1
-  where
-    f (p, x) acc =
-      if x == 0
-        then acc
-        else (acc +) . abs $ x - (lookupTopic p p2)
-
-percentageMatch :: Positions -> Positions -> Double
-percentageMatch p1 p2 = if highest == 0 then 0 else abs (result' - highest) / highest
-  where
-    p1' = filter (\(_, n) -> n /= 0) $ M.toList p1
-    l = length p1'
-    -- Should in reality be 2 * l but 1.5 makes the results more interesting
-    highest = 1.5 * (fromIntegral l)
-    result = comparePositions' p1' p2
-    result' = if result > highest then highest else result
-
-questions :: [Question]
-questions = getQuestion <$> topics
-  where
-    -- topics = getTopics @'[Education, Enviroment, Guns, Healthcare, Immigration]
-    topics = getTopics @'[Education, Enviroment, Guns, Healthcare, Immigration, Technology, Economics, LaborAndWelfare]
