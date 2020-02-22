@@ -1,5 +1,7 @@
 # Todos
 
+* Update frontend to use environment variables
+
 * Design infographic social share mockup
 
 * Top Unique Areas of Agreement - IE. 'How do I compare to [INSERT CANDIDATE]'
