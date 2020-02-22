@@ -1,12 +1,8 @@
 # Todos
 
-* Add rest of question help info
-
-* Add a logo
+* Design infographic social share mockup
 
 * Top Unique Areas of Agreement - IE. 'How do I compare to [INSERT CANDIDATE]'
-
-* Design infographic social share mockup
 
 * Add the rest of the questions
 
@@ -14,11 +10,13 @@
 
 * Add a way to get user feedback about results
 
-* Fix styling bugs
-
 * Replace candidate photos
 
 ### Completed todo items
+
+* <del> Add rest of question help info
+
+* <del> Add a logo
 
 * <del> Social media graphic generation
 
