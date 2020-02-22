@@ -187,6 +187,10 @@ parseTopics =
           <|> parseLaborAndWelfare s
     )
 
+------------------------------------------------------------------------
+--                         Topic definitions                          --
+------------------------------------------------------------------------
+
 data Education
   = TuitionFreePublicCollege
   | DebtReliefForStudentLoans
