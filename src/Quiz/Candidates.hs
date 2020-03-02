@@ -369,7 +369,7 @@ candidates =
     bloomberg,
     -- yang, -- Dropped out
     -- klobuchar, -- Dropped out
-    gabbard,
+    gabbard
     -- steyer -- Dropped out
   ]
 
