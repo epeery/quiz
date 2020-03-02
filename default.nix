@@ -24,5 +24,5 @@ mkDerivation {
     uuid wai wai-cors wai-extra warp
   ];
   prePatch = "hpack";
-  license = stdenv.lib.licenses.bsd3;
+  license = stdenv.lib.licenses.gpl3;
 }
