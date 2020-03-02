@@ -95,9 +95,9 @@ instance (Eq a, Eq (Summed as)) => Eq (Summed (a ': as)) where
 
 instance (Ord a, Ord (Summed as)) => Ord (Summed (a ': as)) where
   compare (InL a) (InL b) = compare a b
-  compare (InL _) _ = GT
+  compare (InL _) _ = LT
   compare (InR a) (InR b) = compare a b
-  compare (InR _) _ = LT
+  compare (InR _) _ = GT
 
 instance ToJSON (Summed '[])
 
