@@ -6,8 +6,6 @@
 
 * Add the rest of the questions
 
-* Utilize new encoding method rather than storing the topic qid as a nested object
-
 * Let the user choose categories to answer
 
 * Add a way to get user feedback about results
@@ -15,6 +13,8 @@
 * Replace candidate photos
 
 ### Completed todo items
+
+* <del> Utilize new encoding method rather than storing the topic qid as a nested object
 
 * <del> Add rest of question help info
 
