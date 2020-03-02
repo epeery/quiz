@@ -140,14 +140,14 @@ instance IsTopicList '[] where
 instance (a :<: TopicList, Bounded a, Enum a, IsTopicList xs) => IsTopicList (a ': xs) where
   getTopics = (inj @a <$> [minBound .. maxBound]) ++ getTopics @xs
 
-class Readable a where
-  checkRead :: String -> Maybe Topics
+class Readable a b where
+  checkRead :: String -> Maybe b
 
-instance Readable '[] where
+instance Readable '[] a where
   checkRead _ = Nothing
 
-instance (Read a, a :<: TopicList, Readable as) => Readable (a ': as) where
-  checkRead s = (readMaybe @a s >>= return . inj) <|> (checkRead @as s)
+instance (Read a, a :<: TopicList, Readable as Topics) => Readable (a ': as) Topics where
+  checkRead s = (readMaybe @a s >>= return . inj) <|> (checkRead @as @Topics s)
 
 -- Given a question name, returns the encoded version
 readTopic :: String -> Maybe Topics
