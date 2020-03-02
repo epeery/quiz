@@ -63,6 +63,7 @@ dependencies:
   - JuicyPixels
   - uuid
   - turtle
+  - deriving-aeson
 
 library:
   source-dirs: src

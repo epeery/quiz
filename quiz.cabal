@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d6c347065165305464886796a393d3513c8afb263723bb39d4233d8470ef8799
+-- hash: 8052efe3a4ba564d615c3fc1a83351912d49efb80aa40a9316ee0a841938721a
 
 name:                quiz
 version:             0.1.0.0
@@ -46,6 +46,7 @@ library
     , blaze-markup
     , bytestring
     , containers
+    , deriving-aeson
     , mtl
     , optparse-generic
     , polysemy
@@ -79,6 +80,7 @@ executable quiz-server
     , blaze-markup
     , bytestring
     , containers
+    , deriving-aeson
     , mtl
     , optparse-generic
     , polysemy

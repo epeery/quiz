@@ -5,6 +5,9 @@ let
         overrides = haskellPackagesNew: haskellPackagesOld: rec {
           app =
             haskellPackagesNew.callPackage ./default.nix { };
+
+          deriving-aeson =
+            haskellPackagesNew.callPackage ./deriving-aeson.nix { };
         };
       };
     };

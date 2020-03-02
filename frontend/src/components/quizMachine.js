@@ -77,26 +77,10 @@ export const quizMachine = createMachine({
       questionNumber: (context, event) => context.questionNumber - 1
     }),
     storeAnswer: assign({
-      answers: (context, event) => ({ ...context.answers, [idToString(context.data[context.questionNumber].qId)]: event.value })
-      // answers: (context, event) => ({ ...context.answers, [context.data[context.questionNumber].id]: event.value })
+      answers: (context, event) => ({ ...context.answers, [context.data[context.questionNumber].id]: event.value })
     })
   }
 });
 
-export const idToString = ({contents, tag}) =>
-  (tag + " " +
-    ((typeof contents === 'object' && contents !== null)
-      ?  (idToString (contents))
-      : contents))
 
-export const stringToId = string => arrayToId(string.split(" "))
-
-const arrayToId = ([ a, ...arr ]) => {
-  if (arr.length < 1) {
-    return a;
-  } else {
-    return ({tag: a, contents: arrayToId(arr)})
-  }
-};
-
-export const encodeAnswers = results => Object.keys(results).map(x => [stringToId (x), results[x]])
+export const encodeAnswers = results => Object.keys(results).map(x => [x, results[x]])

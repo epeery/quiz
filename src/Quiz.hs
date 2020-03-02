@@ -10,6 +10,7 @@ module Quiz
 where
 
 import qualified Data.Map.Strict as M
+import Data.Maybe (maybe)
 import Data.Text (Text)
 import Polysemy
 import Quiz.Candidates (Respondant (..), Results, mostSimilarTo)
@@ -24,8 +25,11 @@ data QuizError
 getQuestions :: (Member Randomize r) => Sem r [Question]
 getQuestions = randomize questions
 
-matchUser :: M.Map Topics Double -> Sem r Results
-matchUser o = return $ matchUser' o
+matchUser :: [(String, Double)] -> Sem r Results
+matchUser o = return . matchUser' . M.fromList $ o'
+  where
+    -- Attempts to convert the keys into topics. Leaves out any that fail.
+    o' = foldr (\(t, d) acc -> maybe acc (\x -> (x, d) : acc) (readTopic t)) [] o
 
 matchUser' :: M.Map Topics Double -> Results
 matchUser' = mostSimilarTo . makePerson

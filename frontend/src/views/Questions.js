@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Tour from 'reactour'
 
 import { useMachine } from '@xstate/react';
-import { quizMachine, idToString, encodeAnswers } from '../components/quizMachine.js'
+import { quizMachine, encodeAnswers } from '../components/quizMachine.js'
 
 function Questions({data, onBack, onResults}) {
   const [current, send] = useMachine(quizMachine, {
@@ -120,8 +120,8 @@ function Questions({data, onBack, onResults}) {
   const questionNumber = current.context.questionNumber;
 
   const getSelected = () => (
-    current.context.answers.hasOwnProperty(idToString(data[questionNumber].qId))
-      ? current.context.answers[idToString(data[questionNumber].qId)]
+    current.context.answers.hasOwnProperty(data[questionNumber].id)
+      ? current.context.answers[data[questionNumber].id]
       : undefined
   )
 
@@ -154,7 +154,7 @@ function Questions({data, onBack, onResults}) {
 
             {current.value === 'active' && (
               <div onClick={() => send('SKIP')} className='skip'>
-                <p>{current.context.answers.hasOwnProperty(idToString(data[questionNumber].qId)) ? 'Next' : 'Skip' }</p>
+                <p>{current.context.answers.hasOwnProperty(data[questionNumber].id) ? 'Next' : 'Skip' }</p>
                 <div className="icon-container">
                   <svg width='100%' height='100%' viewBox='0 0 14 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
                     <path d='M13 6H1M1 6L6.14286 1M1 6L6.14286 11' stroke='#31456A' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round'/>
@@ -166,7 +166,7 @@ function Questions({data, onBack, onResults}) {
         </nav>
 
         {current.value === 'active' && (
-          <Question number={questionNumber + 1} topic={data[questionNumber].questionTopic} selected={getSelected()}>
+          <Question number={questionNumber + 1} topic={data[questionNumber].topic} selected={getSelected()}>
             {data[questionNumber].question}
           </Question>
         )}
