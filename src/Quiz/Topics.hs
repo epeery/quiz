@@ -1,9 +1,12 @@
 {-# LANGUAGE AllowAmbiguousTypes #-}
+{-# LANGUAGE DeriveFunctor #-}
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE StandaloneDeriving #-}
 {-# LANGUAGE TypeApplications #-}
+{-# LANGUAGE UndecidableInstances #-}
 
 module Quiz.Topics
   ( Economics (..),
@@ -19,7 +22,6 @@ module Quiz.Topics
     Topics,
     comparePositions,
     getQuestion,
-    inject,
     parseTopics,
     percentageMatch,
     questions,
@@ -33,68 +35,149 @@ import Data.List (filter)
 import Data.Map.Strict (Map)
 import qualified Data.Map.Strict as M
 import Data.Text (Text)
+import Data.Typeable (Proxy (..), Typeable, typeRep)
+import Data.Void
 import GHC.Generics
+import Text.Read (readMaybe)
 
-type Topics =
-  Education
-    + Environment
-    + Guns
-    + Healthcare
-    + Immigration
-    + Technology
-    + Economics
-    + LaborAndWelfare
+type Topics = Summed TopicList
 
-data a + b = InL a | InR b
-  deriving (Show, Eq, Ord, Generic)
+type TopicList =
+  '[ Education,
+     Environment,
+     Guns,
+     Healthcare,
+     Immigration,
+     Technology,
+     Economics,
+     LaborAndWelfare
+   ]
 
-infixr 8 +
+-- https://reasonablypolymorphic.com/blog/better-data-types-a-la-carte/
 
-instance (ToJSON a, ToJSON b) => ToJSON (a + b)
+class Summable (fs :: [*]) where
+  data Summed fs
 
-instance (FromJSON a, FromJSON b) => FromJSON (a + b)
+instance Summable '[] where
+  data Summed '[] = SummedNil Void
 
-instance (ToJSON a, ToJSON b) => ToJSONKey (a + b)
+instance Summable (a ': as) where
+  data Summed (a ': as)
+    = InL a
+    | InR (Summed as)
 
-instance (FromJSON a, FromJSON b) => FromJSONKey (a + b)
+class Injectable (a :: *) (as :: [*]) where
+  inj :: a -> Summed as
 
--- Variant of Data types á la carte
--- http://www.cs.ru.nl/~W.Swierstra/Publications/DataTypesALaCarte.pdf
-
-class a :<: b where
-  inj :: a -> b
-
-instance a :<: a where
-  inj = id
-
-instance a :<: (a + b) where
+instance Injectable a (a ': as) where
   inj = InL
 
-instance {-# OVERLAPPABLE #-} (a :<: c) => a :<: (b + c) where
+instance {-# OVERLAPPABLE #-} Injectable a as => Injectable a (b ': as) where
   inj = InR . inj
 
-class IsTopicList a where
+instance Show (Summed '[]) where
+  show _ = "[]"
+
+instance (Show a, Show (Summed as)) => Show (Summed (a ': as)) where
+  show (InL a) = "InL " ++ show a
+  show (InR a) = "InR " ++ show a
+
+instance Eq (Summed '[]) where
+  (==) _ _ = True
+
+instance Ord (Summed '[]) where
+  compare _ _ = EQ
+
+instance (Eq a, Eq (Summed as)) => Eq (Summed (a ': as)) where
+  (==) (InL a) (InL b) = a == b
+  (==) (InL _) _ = False
+  (==) (InR a) (InR b) = a == b
+  (==) (InR _) _ = False
+
+instance (Ord a, Ord (Summed as)) => Ord (Summed (a ': as)) where
+  compare (InL a) (InL b) = compare a b
+  compare (InL _) _ = GT
+  compare (InR a) (InR b) = compare a b
+  compare (InR _) _ = LT
+
+instance ToJSON (Summed '[])
+
+deriving instance Generic (Summed '[])
+
+instance (ToJSON f, ToJSON (Summed fs)) => ToJSON (Summed (f ': fs))
+
+instance FromJSON (Summed '[])
+
+instance (FromJSON f, FromJSON (Summed fs)) => FromJSON (Summed (f ': fs))
+
+deriving instance Generic (Summed (f ': fs))
+
+instance (ToJSON a, ToJSON (Summed as)) => ToJSONKey (Summed (a ': as))
+
+instance (FromJSON a, FromJSON (Summed as)) => FromJSONKey (Summed (a ': as))
+
+class
+  ( Summable fs,
+    Injectable f fs
+  ) =>
+  f :<: (fs :: [*])
+
+instance
+  ( Summable fs,
+    Injectable f fs
+  ) =>
+  (f :<: fs)
+
+class IsTopicList (a :: [*]) where
   getTopics :: [Topics]
 
 instance IsTopicList '[] where
   getTopics = []
 
+-- Given a type level list of topics, returns a list of questions
 -- Example:
 -- getTopics @'[Education, Environment, Healthcare]
-instance (Injectable a, Bounded a, Enum a, IsTopicList xs) => IsTopicList (a ': xs) where
-  getTopics = (inject @a <$> [minBound .. maxBound]) ++ getTopics @xs
+instance (a :<: TopicList, Bounded a, Enum a, IsTopicList xs) => IsTopicList (a ': xs) where
+  getTopics = (inj @a <$> [minBound .. maxBound]) ++ getTopics @xs
+
+class Readable a where
+  checkRead :: String -> Maybe Topics
+
+instance Readable '[] where
+  checkRead _ = Nothing
+
+instance (Read a, a :<: TopicList, Readable as) => Readable (a ': as) where
+  checkRead s = (readMaybe @a s >>= return . inj) <|> (checkRead @as s)
+
+-- Given a question name, returns the encoded version
+readTopic :: String -> Maybe Topics
+readTopic = checkRead @TopicList
+
+class Parseable a where
+  parseTopic :: String -> [Topics]
+
+instance Parseable '[] where
+  parseTopic _ = []
+
+instance (Typeable a, IsTopicList '[a], Parseable as) => Parseable (a ': as) where
+  parseTopic s = if s == (show $ typeRep (Proxy @a)) then getTopics @'[a] else parseTopic @as s
+
+-- Given a list of topic names, returns a list of questions
+parseTopics :: [String] -> [Topics]
+parseTopics = foldMap (parseTopic @TopicList)
 
 class IsTopic a where
   getQuestion :: a -> Question
 
-class Injectable a where
-  inject :: a -> Topics
+instance IsTopic (Summed '[]) where
+  getQuestion _ = undefined
 
-instance (IsTopic a, IsTopic b) => IsTopic (a + b) where
+instance (IsTopic a, IsTopic (Summed b)) => IsTopic (Summed (a ': b)) where
   getQuestion (InL x) = getQuestion x
   getQuestion (InR y) = getQuestion y
 
-topic :: (a :<: b) => a -> b
+-- Renamed for more obvious API
+topic :: (a :<: TopicList) => a -> Topics
 topic = inj
 
 data Question
@@ -106,7 +189,7 @@ data Question
         questionTopic :: Text,
         qId :: Topics
       }
-  deriving (Generic)
+  deriving (Show, Generic)
 
 instance FromJSON Question
 
@@ -140,60 +223,7 @@ percentageMatch p1 p2 = if highest == 0 then 0 else abs (result' - highest) / hi
     result' = if result > highest then highest else result
 
 questions :: [Question]
-questions = getQuestion <$> topics
-  where
-    topics =
-      getTopics
-        @'[ Education,
-            Environment,
-            Guns,
-            Healthcare,
-            Immigration,
-            Technology,
-            Economics,
-            LaborAndWelfare
-          ]
-
-parseTopic :: forall a. (Injectable a, Bounded a, Enum a) => String -> String -> [Topics]
-parseTopic target s = if s == target then getTopics @'[a] else []
-
-parseEducation :: String -> [Topics]
-parseEducation = parseTopic @Education "education"
-
-parseEnvironment :: String -> [Topics]
-parseEnvironment = parseTopic @Environment "environment"
-
-parseGuns :: String -> [Topics]
-parseGuns = parseTopic @Guns "guns"
-
-parseHealthcare :: String -> [Topics]
-parseHealthcare = parseTopic @Healthcare "healthcare"
-
-parseImmigration :: String -> [Topics]
-parseImmigration = parseTopic @Immigration "immigration"
-
-parseTechnology :: String -> [Topics]
-parseTechnology = parseTopic @Technology "technology"
-
-parseEconomics :: String -> [Topics]
-parseEconomics = parseTopic @Economics "economics"
-
-parseLaborAndWelfare :: String -> [Topics]
-parseLaborAndWelfare = parseTopic @LaborAndWelfare "labor and welfare"
-
-parseTopics :: [String] -> [Topics]
-parseTopics =
-  foldMap
-    ( \s ->
-        parseEducation s
-          <|> parseEnvironment s
-          <|> parseGuns s
-          <|> parseHealthcare s
-          <|> parseImmigration s
-          <|> parseTechnology s
-          <|> parseEconomics s
-          <|> parseLaborAndWelfare s
-    )
+questions = getQuestion <$> getTopics @TopicList
 
 ------------------------------------------------------------------------
 --                         Topic definitions                          --
@@ -263,9 +293,6 @@ instance IsTopic Education where
         question = "The government should increase funding for primary and secondary public education",
         qId = topic IncreaseFundingForPublicEducation
       }
-
-instance Injectable Education where
-  inject = topic
 
 instance ToJSON Education
 
@@ -356,9 +383,6 @@ instance IsTopic Environment where
         qId = topic DeclareClimateChangeANationalEmergency
       }
 
-instance Injectable Environment where
-  inject = topic
-
 instance ToJSON Environment
 
 instance FromJSON Environment
@@ -408,9 +432,6 @@ instance IsTopic Guns where
         qId = topic RequireGunLicense
       }
 
-instance Injectable Guns where
-  inject = topic
-
 instance ToJSON Guns
 
 instance FromJSON Guns
@@ -459,9 +480,6 @@ instance IsTopic Healthcare where
         question = "The U.S. should import some prescription drugs from Canada",
         qId = topic ImportPrescriptionDrugsFromCanada
       }
-
-instance Injectable Healthcare where
-  inject = topic
 
 instance ToJSON Healthcare
 
@@ -552,9 +570,6 @@ instance IsTopic Immigration where
         qId = topic DecriminalizeIllegalImmigration
       }
 
-instance Injectable Immigration where
-  inject = topic
-
 instance ToJSON Immigration
 
 instance FromJSON Immigration
@@ -593,9 +608,6 @@ instance IsTopic Technology where
         question = "I am in favor of the CASE Act",
         qId = topic CASEAct
       }
-
-instance Injectable Technology where
-  inject = topic
 
 instance ToJSON Technology
 
@@ -666,9 +678,6 @@ instance IsTopic Economics where
         qId = topic SupportNAFTA
       }
 
-instance Injectable Economics where
-  inject = topic
-
 instance ToJSON Economics
 
 instance FromJSON Economics
@@ -737,9 +746,6 @@ instance IsTopic LaborAndWelfare where
         question = "Anyone who wants to work should be guaranteed a job",
         qId = topic JobGuarantee
       }
-
-instance Injectable LaborAndWelfare where
-  inject = topic
 
 instance ToJSON LaborAndWelfare
 
