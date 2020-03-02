@@ -118,17 +118,13 @@ instance (FromJSON a, FromJSON (Summed as)) => FromJSONKey (Summed (a ': as))
 
 class
   ( Summable fs,
-    Injectable f fs,
-    Bounded f,
-    Enum f
+    Injectable f fs
   ) =>
   f :<: (fs :: [*])
 
 instance
   ( Summable fs,
-    Injectable f fs,
-    Bounded f,
-    Enum f
+    Injectable f fs
   ) =>
   (f :<: fs)
 
@@ -141,7 +137,7 @@ instance IsTopicList '[] where
 -- Given a type level list of topics, returns a list of questions
 -- Example:
 -- getTopics @'[Education, Environment, Healthcare]
-instance (a :<: TopicList, IsTopicList xs) => IsTopicList (a ': xs) where
+instance (a :<: TopicList, Bounded a, Enum a, IsTopicList xs) => IsTopicList (a ': xs) where
   getTopics = (inj @a <$> [minBound .. maxBound]) ++ getTopics @xs
 
 class Readable a where
