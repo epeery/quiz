@@ -53,8 +53,6 @@ type TopicList =
      LaborAndWelfare
    ]
 
--- https://reasonablypolymorphic.com/blog/better-data-types-a-la-carte/
-
 class Summable (fs :: [*]) where
   data Summed fs
 
