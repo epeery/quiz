@@ -25,6 +25,7 @@ module Quiz.Topics
     parseTopics,
     percentageMatch,
     questions,
+    readTopic,
     topic,
   )
 where
