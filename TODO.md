@@ -1,12 +1,12 @@
 # Todos
 
-* Update frontend to use environment variables
-
 * Design infographic social share mockup
 
 * Top Unique Areas of Agreement - IE. 'How do I compare to [INSERT CANDIDATE]'
 
 * Add the rest of the questions
+
+* Utilize new encoding method rather than storing the topic qid as a nested object
 
 * Let the user choose categories to answer
 
