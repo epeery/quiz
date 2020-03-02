@@ -370,7 +370,7 @@ candidates =
     -- yang, -- Dropped out
     -- klobuchar, -- Dropped out
     gabbard,
-    steyer
+    -- steyer -- Dropped out
   ]
 
 comparePeople :: Person a -> Person b -> Double
