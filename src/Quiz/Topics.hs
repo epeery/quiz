@@ -26,7 +26,7 @@ module Quiz.Topics
     parseTopics,
     percentageMatch,
     questions,
-    readTopic,
+    readQuestion,
     topic,
   )
 where
@@ -150,8 +150,8 @@ instance (Read a, a :<: TopicList, Readable as Topics) => Readable (a ': as) Top
   checkRead s = (readMaybe @a s >>= return . inj) <|> (checkRead @as @Topics s)
 
 -- Given a question name, returns the encoded version
-readTopic :: String -> Maybe Topics
-readTopic = checkRead @TopicList
+readQuestion :: String -> Maybe Topics
+readQuestion = checkRead @TopicList
 
 class Parseable a where
   parseTopic :: String -> [Topics]
