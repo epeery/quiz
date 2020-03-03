@@ -29,7 +29,7 @@ matchUser :: [(String, Double)] -> Sem r Results
 matchUser o = return . matchUser' . M.fromList $ o'
   where
     -- Attempts to convert the keys into topics. Leaves out any that fail.
-    o' = foldr (\(t, d) acc -> maybe acc (\x -> (x, d) : acc) (readTopic t)) [] o
+    o' = foldr (\(t, d) acc -> maybe acc (\x -> (x, d) : acc) (readQuestion t)) [] o
 
 matchUser' :: M.Map Topics Double -> Results
 matchUser' = mostSimilarTo . makePerson
