@@ -366,7 +366,7 @@ candidates =
     sanders,
     warren,
     -- buttigieg, -- Dropped out
-    bloomberg,
+    -- bloomberg, -- Dropped out
     -- yang, -- Dropped out
     -- klobuchar, -- Dropped out
     gabbard
