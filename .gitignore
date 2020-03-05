@@ -1,6 +1,5 @@
 .envrc
 package-lock.json
-cabal.project
 dist-newstyle/
 node_modules/
 pictures/
