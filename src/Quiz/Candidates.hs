@@ -365,12 +365,12 @@ candidates =
   [ biden,
     sanders,
     warren,
-    -- buttigieg, -- Dropped out
-    -- bloomberg, -- Dropped out
-    -- yang, -- Dropped out
-    -- klobuchar, -- Dropped out
-    gabbard
-    -- steyer -- Dropped out
+    buttigieg, -- Dropped out
+    bloomberg, -- Dropped out
+    yang, -- Dropped out
+    klobuchar, -- Dropped out
+    gabbard,
+    steyer -- Dropped out
   ]
 
 comparePeople :: Person a -> Person b -> Double
