@@ -4,14 +4,7 @@
 
 [Install the Nix package manager](https://nixos.org/nix/download.html)
 
-Then install cabal-install
-
-```bash
-$ nix-env --install cabal-install
-```
-
-Also be sure to add ~/.cabal/bin to your path
-
+Also make sure that ~/.cabal/bin is in your path
 
 ## To install
 
