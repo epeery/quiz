@@ -26,4 +26,4 @@ let
   pkgs = import src { inherit config; };
 
 in
-  { app = pkgs.haskellPackages.app; }
+  { app = pkgs.haskellPackages.app; pkgs = pkgs;}
